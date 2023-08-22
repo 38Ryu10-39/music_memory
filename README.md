@@ -50,10 +50,11 @@ music_memoryでは今まで聴いた音楽を年齢・地域と思い出を添�
 * マルチ検索機能
 
 ### 使用技術・バージョン
-- ruby：2.7.0以上
+- ruby：3系
 - rails ：7系
 - postgresql
 - heroku：デプロイ先
+- ActionCable
 - JavaScript
 - jQuery
 - Jmapまたは、Japan Map ( jQuery plugin )
