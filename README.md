@@ -55,4 +55,5 @@ music_memoryでは今まで聴いた音楽を年齢・地域と思い出を添�
 - postgresql
 - heroku：デプロイ先
 - jQuery
+- JavaScript
 以降必要であれば追記します。
