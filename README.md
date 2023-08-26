@@ -59,3 +59,10 @@ music_memoryでは今まで聴いた音楽を年齢・地域と思い出を添�
 - jQuery
 - Jmapまたは、Japan Map ( jQuery plugin )
 以降必要であれば追記します。
+
+## 画面遷移図
+### 画面遷移は以下のようになることを想定しています。
+https://www.figma.com/file/nYbpVKT0jUKczZpwxuF6C1/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B31(music_memory)?type=whiteboard&node-id=0%3A1&t=Mgn1gWmKZ8XVxWJ3-1
+
+### 画面遷移した際のそれぞれのページが以下のようになることを想定しています。
+https://www.figma.com/file/kQRBUcobIf2z1qvq3vVfOT/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3(Music_Memory)?type=design&node-id=9%3A168&mode=design&t=aeSyYu3HrkIZCD9i-1
