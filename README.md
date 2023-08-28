@@ -65,4 +65,8 @@ music_memoryでは今まで聴いた音楽を年齢・地域と思い出を添�
 https://www.figma.com/file/nYbpVKT0jUKczZpwxuF6C1/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B31(music_memory)?type=whiteboard&node-id=0%3A1&t=Mgn1gWmKZ8XVxWJ3-1
 
 ### 画面遷移した際のそれぞれのページが以下のようになることを想定しています。
-https://www.figma.com/file/kQRBUcobIf2z1qvq3vVfOT/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3(Music_Memory)?type=design&node-id=9%3A168&mode=design&t=aeSyYu3HrkIZCD9i-1
+https://www.figma.com/proto/kQRBUcobIf2z1qvq3vVfOT/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3-Music_Memory?type=design&node-id=22-7&t=A54Xin9C5L06hkSv-0&scaling=scale-down&starting-point-node-id=22%3A8
+
+## ER図
+### URLは以下のものです
+[![Image from Gyazo](https://i.gyazo.com/1e1040195896e907a1b032c13164fb02.png)](https://gyazo.com/1e1040195896e907a1b032c13164fb02)
