@@ -68,5 +68,8 @@ https://www.figma.com/file/nYbpVKT0jUKczZpwxuF6C1/%E7%94%BB%E9%9D%A2%E9%81%B7%E7
 https://www.figma.com/proto/kQRBUcobIf2z1qvq3vVfOT/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3-Music_Memory?type=design&node-id=22-7&t=A54Xin9C5L06hkSv-0&scaling=scale-down&starting-point-node-id=22%3A8
 
 ## ER図
-### URLは以下のものです
-[![Image from Gyazo](https://i.gyazo.com/1e1040195896e907a1b032c13164fb02.png)](https://gyazo.com/1e1040195896e907a1b032c13164fb02)
+### ER図は以下のものとなります。
+[![Image from Gyazo](https://i.gyazo.com/347e4544aae719e0b626e5061ba1c4ae.png)](https://gyazo.com/347e4544aae719e0b626e5061ba1c4ae)
+
+### 具体的なデータを入れることを想定したものが以下のものとなります。
+[![Image from Gyazo](https://i.gyazo.com/ec3b374971075d0f7066fe7983282ba9.png)](https://gyazo.com/ec3b374971075d0f7066fe7983282ba9)
