@@ -1,0 +1,29 @@
+<header class="p-3 mb-3 border-bottom">
+  <div class="container">
+    <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <%= link_to '#', data: {"turbolinks" => false}, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" do %>
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        <h1 class="fs-2">Music Memory</h1>
+      <% end %>
+      
+      <ul class="nav nav-pills">
+        <% if logged_in? %>
+          <li class="nav-item"><%= link_to "About", '#', class: "nav-link" %></li>
+          <li class="nav-item">
+            <%= link_to '#', class: "nav-link" do %>
+              <i class="fa-solid fa-bell"></i>
+            <% end %>
+          </li>
+          <li class="nav-item"><%= link_to "Mypage", '#', class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "新規投稿", '#', class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to t('defaults.logout'), logout_path, method: :delete, class: "nav-link" %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "Home", '#', class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "About", '#', class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to t('defaults.login'), login_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to t('defaults.signup'), signup_path, class: "nav-link" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</header>
