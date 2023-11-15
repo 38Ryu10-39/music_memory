@@ -1,1 +1,21 @@
 ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        x_id: "X"
+        gender: "性別"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+  attributes:
+    created_at: "作成日"
+    updated_at: "更新日"
+  enums:
+    user:
+      gender:
+        other: "その他"
+        male: "男性"
+        female: "女性"

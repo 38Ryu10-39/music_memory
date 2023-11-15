@@ -1,0 +1,6 @@
+<% content_for(:title, '.title') %>
+<% if @users.present? %>
+  <%= render @users %>
+<% else %>
+  ユーザーが存在しません。
+<% end %>
