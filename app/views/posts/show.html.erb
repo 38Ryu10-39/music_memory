@@ -1,0 +1,19 @@
+<% content_for(:title, "#{Post.human_attribute_name(:music_name)}:#{@post.music_name}") %>
+<div class="col-8 offset-2">
+  <h1 class="mt-4 mb-4"><%= t('.title') %></h1>
+  <table class="table table-light">
+    <tr>
+      <th><%= t('defaults.contributor') %></th>
+      <td><%= @post.user.name %></td>
+    </tr>
+    <tr>
+      <th><%= Post.human_attribute_name(:music_name) %></th>
+      <td><%= @post.music_name %></td>
+    </tr>
+    <tr>
+      <th><%= Post.human_attribute_name(:memory) %></th>
+      <td><%= @post.memory %></td>
+    </tr>
+  </table>
+  <%= render 'crud_menu', post: @post %>
+</div>

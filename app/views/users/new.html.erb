@@ -1,6 +1,6 @@
 <% content_for(:title, t('.title')) %>
 <div class="form-signin m-auto col-6 offset-3">
-  <h1 class="text-center mb-4"><%= t('defaults.signup') %></h1>  
+  <h1 class="text-center mb-4"><%= t('.title') %></h1>  
   <%= form_with model: @user, local: true do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="mb-3">
