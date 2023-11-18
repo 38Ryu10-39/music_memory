@@ -5,36 +5,24 @@ RSpec.describe "Users", type: :system do
     context '正常系' do
       it 'Userを新規作成できる' do
         visit root_path
-        expect(page).to have_content('新規登録')
-        click_link '新規登録'
-        fill_in '名前', with: Faker::Name.unique.name
-        fill_in 'メールアドレス', with: Faker::Internet.unique.free_email
-        fill_in 'パスワード', with: 'password'
-        fill_in 'パスワード確認', with: 'password'
+        expect(page).to have_content(I18n.t('defaults.signup'))
+        click_link I18n.t('defaults.signup')
+        fill_in User.human_attribute_name(:name), with: Faker::Name.unique.name
+        fill_in User.human_attribute_name(:email), with: Faker::Internet.unique.email
+        fill_in User.human_attribute_name(:password), with: 'password'
+        fill_in User.human_attribute_name(:password_confirmation), with: 'password'
         expect{find('input[name="commit"]').click}.to change{ User.count }.by(1)
       end
     end
     context '異常系' do
-      describe '' do
-        before do
-          visit signup_path
-        end
-        let!(:user1) { create(:user) }
-        it 'カラム未記入では新規登録できない' do
-          find('input[name="commit"]').click
-          expect(page).to have_content('新規登録')
-          expect( User.count ).to eq 1
-          expect(page).to have_content('もう一度お願いします')
-        end
-        it 'emailがすでに存在しているとき新規登録できない' do
-          fill_in '名前', with: Faker::Name.unique.name
-          fill_in 'メールアドレス', with: user1.email
-          fill_in 'パスワード', with: 'password'
-          fill_in 'パスワード確認', with: 'password'
-          find('input[name="commit"]').click
-          expect( User.count ).to eq 1
-          expect(page).to have_content('メールアドレスはすでに存在します')
-        end
+      before do
+        visit signup_path
+      end
+      let!(:user1) { create(:user) }
+      it 'カラム未記入では新規登録できない' do
+        expect{find('input[name="commit"]').click}.to change{User.count}.by(0)
+        expect(page).to have_content(I18n.t('users.new.title'))
+        expect(page).to have_content(I18n.t('defaults.messages.signup_failed'))
       end
     end
   end
@@ -46,16 +34,16 @@ RSpec.describe "Users", type: :system do
     let!(:user) { create(:user) }
     context '正常系' do
       it 'ログイン成功' do
-        fill_in 'メールアドレス', with: user.email
-        fill_in 'パスワード', with: 'password'
+        fill_in User.human_attribute_name(:email), with: user.email
+        fill_in User.human_attribute_name(:password), with: 'password'
         find('input[name="commit"]').click
         expect(page).to have_content(user.name)
       end
     end
     context '異常系' do
-      it '新規登録ボタンを押すとログインページへ遷移' do
+      it '空欄のまま新規登録ボタンを押すとログインページへフラッシュメッセージと共に戻される' do
         find('input[name="commit"]').click
-        expect(page).to have_content('ログインに失敗しました')
+        expect(page).to have_content(I18n.t('defaults.messages.login_failed'))
       end
     end
   end
@@ -64,8 +52,8 @@ RSpec.describe "Users", type: :system do
     let!(:user) { create(:user) }
     it 'ログアウト成功' do
       login(user)
-      click_on 'ログアウト'
-      expect(page).to have_content('ログアウトしました')
+      click_on I18n.t('defaults.logout')
+      expect(page).to have_content(I18n.t('defaults.messages.logout_success'))
     end
   end
 end

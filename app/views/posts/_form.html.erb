@@ -1,0 +1,14 @@
+<%= form_with model: post, class: "offset-md-1 offset-lg-2 col-md-10 col-lg-8", local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="mb-3">
+    <%= f.label :music_name %><br />
+    <%= f.text_field :music_name, class: "form-control", placeholder: "曲名", value: post.music_name %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :memory %><br />
+    <%= f.text_area :memory, class: "form-control", placeholder: "あなたのこの曲の思い出を書きましょう", value: post.memory %>
+  </div>
+  <div class="mb-3 text-center mt-4">
+    <%= f.submit "投稿", class:"btn btn-primary w-50" %>
+  </div>
+<% end %>

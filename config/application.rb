@@ -19,8 +19,7 @@ module MusicMemory
         view_specs: false,
         helper_specs: false,
         controller_specs: false,
-        routing_specs: false,
-        request_specs: false
+        routing_specs: false
     end
 
     config.time_zone = 'Asia/Tokyo'

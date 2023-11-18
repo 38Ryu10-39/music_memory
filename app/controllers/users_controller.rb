@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
+  before_action :login_limited, only: %i[new create]
 
   def index
     @users = User.all
@@ -27,5 +28,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def login_limited
+    redirect_to root_path, warning: t('defaults.messages.login_limited') if logged_in?
   end
 end
