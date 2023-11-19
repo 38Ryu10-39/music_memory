@@ -6,7 +6,7 @@
       <% if @posts.present? %>
         <%= render @posts %>
       <% else %>
-        <div>投稿はありません</div>
+        <div><%= t('defaults.messages.no_posts') %></div>
       <% end %>
     </div>
   </div>

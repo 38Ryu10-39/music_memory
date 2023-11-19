@@ -1,14 +1,32 @@
-<%= form_with model: post, class: "offset-md-1 offset-lg-2 col-md-10 col-lg-8", local: true do |f| %>
+<%= form_with model: post, class: "offset-lg-1 col-lg-10", local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="mb-3">
     <%= f.label :music_name %><br />
-    <%= f.text_field :music_name, class: "form-control", placeholder: "曲名", value: post.music_name %>
+    <%= f.text_field :music_name, class: "form-control", placeholder: Post.human_attribute_name(:music_name), value: post.music_name %>
   </div>
   <div class="mb-3">
     <%= f.label :memory %><br />
-    <%= f.text_area :memory, class: "form-control", placeholder: "あなたのこの曲の思い出を書きましょう", value: post.memory %>
+    <%= f.text_area :memory, class: "form-control", placeholder: t('defaults.messages.memory_placeholder'), value: post.memory %>
   </div>
+  <div class="mb-3">
+    <%= f.label :age_group %><br />
+    <%= f.select :age_group, Post.age_groups_i18n.keys.map {|k| [Post.age_groups_i18n[k], k]}, { include_blank: t('defaults.messages.age_group_placeholder') }, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :prefecture_id %><br />
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, class: "form-control" %>
+  </div>
+  <%= f.fields_for embed do |embed_form| %>
+    <div class="mb-3">
+      <%= embed_form.label :embed_type %><br />
+      <%= embed_form.select :embed_type, Embed.embed_types_i18n.keys.map { |k| [Embed.embed_types_i18n[k], k]}, {include_blank: "---"}, class: "form-control", selected: embed.embed_type_i18n %><br />
+    </div>
+    <div class="mb-3">
+      <%= embed_form.label :identifer %><br />
+      <%= embed_form.text_field :identifer, class: "form-control", placeholder: t('posts.new.embed_identifer_content'), value: embed.identifer %><br />
+    </div>
+  <% end %>
   <div class="mb-3 text-center mt-4">
-    <%= f.submit "投稿", class:"btn btn-primary w-50" %>
+    <%= f.submit t('posts.new.submit'), class:"btn btn-primary w-50" %>
   </div>
 <% end %>

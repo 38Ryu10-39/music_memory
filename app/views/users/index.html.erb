@@ -2,5 +2,7 @@
 <% if @users.present? %>
   <%= render @users %>
 <% else %>
-  ユーザーが存在しません。
+  <div>
+    <%= t('defaults.messages.no_users') %>
+  </div>
 <% end %>

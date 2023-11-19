@@ -1,14 +1,16 @@
-<div class="card p-3">
-  <table>
-    <div><%= link_to post.music_name, post_path(post), class: "fs-2" %></div>
-    <tr>
-      <td><%= Post.human_attribute_name(:memory) %></td>
-      <td><%= post.memory %></td>
-    </tr>
-    <tr>
-      <td><%= t('defaults.contributor') %></td>
-      <td><%= post.user.name %></td>
-    </tr>
-  </table>
-  <%= render 'crud_menu', post: post %>
+<div class="container">
+  <div class="row">
+    <div class="card p-4">
+      <table>
+        <tr><td><%= link_to post.music_name, post_path(post), class: "fs-2" %></td></tr>
+        <tr><td><%= post.memory %></td></tr>
+        <tr><td><%= post.age_group_i18n %></td></tr>
+        <% if post.prefecture.present? %>
+          <tr><td><%= post.prefecture.name %></td></tr>
+        <% end %>
+        <tr><td><%= link_to "#{t('defaults.contributor')}: #{post.user.name}", user_path(post.user) %></td></tr>
+      </table>
+      <%= render 'crud_menu', post: post %>
+    </div>
+  </div>
 </div>
