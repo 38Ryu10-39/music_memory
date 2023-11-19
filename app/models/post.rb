@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
-  #belongs_to :embed
+  belongs_to :embed
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture

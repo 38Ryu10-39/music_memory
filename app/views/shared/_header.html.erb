@@ -15,7 +15,7 @@
             <% end %>
           </li>
           <li class="nav-item"><%= link_to "Mypage", '#', class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "新規投稿", new_post_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to t('defaults.new_post'), new_post_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to t('defaults.logout'), logout_path, method: :delete, class: "nav-link" %></li>
         <% else %>
           <li class="nav-item"><%= link_to "Home", '#', class: "nav-link" %></li>

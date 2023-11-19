@@ -1,10 +1,27 @@
 <% content_for(:title, "#{Post.human_attribute_name(:music_name)}:#{@post.music_name}") %>
 <div class="col-8 offset-2">
-  <h1 class="mt-4 mb-4"><%= t('.title') %></h1>
+  <h1 class="pb-4 pt-4"><%= t('.title') %></h1>
+  <div class="text-center">
+    <% if !@post.embed.identifer.empty? %>
+      <% if @post.embed.youtube? %>
+        <%= content_tag 'iframe', nil, width: '100%', height: '350px', src: "https://www.youtube.com/embed/#{@post.embed.identifer}", frameborder: 0, allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", style: "max-width:600px;", allowfullscreen: "" %>
+      <% elsif @post.embed.apple_music? %>
+        <%= content_tag 'iframe', nil, allow: "autoplay; encrypted-media *; fullscreen *; clipboard-write; picture-in-picture", frameborder: "0", height: "200px", style: "width:100%;max-width:600px;", sandbox: "allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation", src: "https://embed.music.apple.com/jp/album/#{@post.embed.identifer}" %>
+      <% elsif @post.embed.spotify? %>
+        <%= content_tag 'iframe', nil, allow: "autoplay; encrypted-media *; fullscreen *; clipboard-write; picture-in-picture",loading: "lazy", frameborder: "0", height: "200px", style: "width:100%;max-width:660px;overflow:hidden;border-radius:10px;max-width:600px;", src: "https://open.spotify.com/embed/track/#{@post.embed.identifer}?utm_source=generator" %>
+      <% end %>
+      <p><%= @post.embed.embed_type_i18n %></p>
+      <p><%= @post.embed.identifer %></p>
+    <% end %>
+  </div>
   <table class="table table-light">
     <tr>
       <th><%= t('defaults.contributor') %></th>
-      <td><%= @post.user.name %></td>
+      <% if current_user.mine?(@post) %>
+        <td><%= @post.user.name %></td>
+      <% else %>
+        <td><%= link_to @post.user.name, user_path(@post.user) %></td>
+      <% end %>
     </tr>
     <tr>
       <th><%= Post.human_attribute_name(:music_name) %></th>
@@ -14,6 +31,12 @@
       <th><%= Post.human_attribute_name(:memory) %></th>
       <td><%= @post.memory %></td>
     </tr>
+    <% if @post.prefecture.present? %>
+      <tr>
+        <th><%= Post.human_attribute_name(:prefecture_id) %></th>
+        <td><%= @post.prefecture.name %></td>
+      </tr>
+    <% end %>
   </table>
   <%= render 'crud_menu', post: @post %>
 </div>

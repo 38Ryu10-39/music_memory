@@ -4,6 +4,8 @@ ja:
     signup: "新規登録"
     logout: "ログアウト"
     contributor: "投稿者"
+    back_button: "戻る"
+    new_post: "新規投稿"
     messages:
       not_authenticated: "ログインしてください"
       login_success: "ログインしました"
@@ -14,6 +16,13 @@ ja:
       post_create_success: "曲の思い出を投稿しました"
       post_create_failed: "投稿に失敗しました"
       login_limited: "アクセスできません"
+      post_success: "投稿しました"
+      post_failed: "投稿に失敗しました"
+      embed_lacking: "動画タイプとURLを両方入力してください"
+      memory_placeholder: "あなたのこの曲の思い出を書きましょう"
+      age_group_placeholder: "聴いた年代を選択してください"
+      no_posts: "投稿はありません"
+      no_users: "ユーザーが存在しません"
   users:
     new:
       title: "新規登録"
@@ -28,5 +37,7 @@ ja:
       title: "投稿一覧"
     new:
       title: "新規投稿"
+      embed_identifer_content: "直接URLまたは共有ボタンのリンクを貼ってください"
+      submit: "投稿"
     show:
       title: "投稿詳細"
