@@ -1,19 +1,19 @@
 <ul class="list-unstyled list-inline float-right">
-  <li class="list-inline-item">
+  <li class="list-inline-item" id="search-post-<%= post.id %>">
     <% unless current_page?(post_path(post)) %>
-      <%= link_to post_path(post) do %>
+      <%= link_to post_path(post), id: "show-post-#{post.id}" do %>
         <i class="fas fa-search"></i> 
       <% end %>
     <% end %>
   </li>
   <% if logged_in? && current_user.mine?(post) %>
     <li class="list-inline-item">
-      <%= link_to '#' do %>
+      <%= link_to edit_post_path(post), id: "edit-post-#{post.id}" do %>
         <i class="fa-solid fa-pen"></i>
       <% end %>
     </li>
     <li class="list-inline-item">
-      <%= link_to '#' do %>
+      <%= link_to post_path(post), method: :delete, data: { confirm: t('defaults.messages.delete_confirm') }, id: "destroy-post-#{post.id}" do %>
         <i class="fa-solid fa-trash-can"></i>
       <% end %>
     </li>

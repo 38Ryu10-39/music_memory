@@ -23,6 +23,10 @@ ja:
       age_group_placeholder: "聴いた年代を選択してください"
       no_posts: "投稿はありません"
       no_users: "ユーザーが存在しません"
+      delete_post: "投稿を削除しました"
+      delete_confirm: "削除しますか?"
+      post_update_success: "編集しました"
+      post_update_failed: "編集に失敗しました"
   users:
     new:
       title: "新規登録"
@@ -41,3 +45,6 @@ ja:
       submit: "投稿"
     show:
       title: "投稿詳細"
+    edit:
+      title: "投稿編集"
+      submit: "更新"

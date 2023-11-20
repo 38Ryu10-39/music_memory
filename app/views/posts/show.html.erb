@@ -2,7 +2,7 @@
 <div class="col-8 offset-2">
   <h1 class="pb-4 pt-4"><%= t('.title') %></h1>
   <div class="text-center">
-    <% if !@post.embed.identifer.empty? %>
+    <% if !@post.embed.embed_type.blank? && !@post.embed.identifer.blank? %>
       <% if @post.embed.youtube? %>
         <%= content_tag 'iframe', nil, width: '100%', height: '350px', src: "https://www.youtube.com/embed/#{@post.embed.identifer}", frameborder: 0, allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", style: "max-width:600px;", allowfullscreen: "" %>
       <% elsif @post.embed.apple_music? %>
@@ -17,7 +17,7 @@
   <table class="table table-light">
     <tr>
       <th><%= t('defaults.contributor') %></th>
-      <% if current_user.mine?(@post) %>
+      <% if logged_in? && current_user.mine?(@post) %>
         <td><%= @post.user.name %></td>
       <% else %>
         <td><%= link_to @post.user.name, user_path(@post.user) %></td>
@@ -31,6 +31,12 @@
       <th><%= Post.human_attribute_name(:memory) %></th>
       <td><%= @post.memory %></td>
     </tr>
+    <% if @post.age_group.present? %>
+      <tr>
+        <th><%= Post.human_attribute_name(:age_group) %></th>
+        <td><%= @post.age_group_i18n %></td>
+      </tr>
+    <% end %>
     <% if @post.prefecture.present? %>
       <tr>
         <th><%= Post.human_attribute_name(:prefecture_id) %></th>

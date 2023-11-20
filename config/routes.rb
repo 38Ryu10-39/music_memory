@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
   resources :users, only: %i[index new create destroy]
-  resources :posts, only: %i[index new create show]
+  resources :posts
 end

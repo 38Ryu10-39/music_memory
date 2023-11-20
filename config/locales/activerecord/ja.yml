@@ -14,8 +14,8 @@ ja:
       post:
         music_name: "曲名"
         memory: "曲の感想や思い出"
-        age_group: "聞いた年代"
-        prefecture_id: "聞いた都道府県"
+        age_group: "曲を聞いた年代"
+        prefecture_id: "曲を聞いた地域"
       embed:
         embed_type: "動画タイプ"
         identifer: "動画のURL"
