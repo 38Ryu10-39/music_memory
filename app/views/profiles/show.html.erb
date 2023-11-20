@@ -1,0 +1,49 @@
+<% content_for(:title, t('.title')) %>
+<div class="m-3 p-4">
+  <h2><%= t('.title') %></h2>
+  <div class="card p-3 col-8 offset-2">
+    <div>
+      <%= image_tag @user.avatar_url, size: '200x200', class: 'rounded-circle mr15 d-block mb-5 mx-auto' %>
+    </div>  
+    <table>
+      <tr>
+        <td><%= User.human_attribute_name(:name) %></td>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <td><%= User.human_attribute_name(:email) %></td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td><%= User.human_attribute_name(:profile) %></td>
+        <td><%= @user.profile if !@user.profile.nil? %></td>
+      </tr>
+      <tr>
+        <td><%= User.human_attribute_name(:birthday) %></td>
+        <td><%= @user.birthday.strftime("%Y/%m") if !@user.birthday.nil? %></td>
+      </tr>
+      <tr>
+        <td><%= User.human_attribute_name(:prefecture_id) %></td>
+        <td><%= @user.prefecture.name if !@user.prefecture.nil? %></td>
+      </tr>
+      <tr>
+        <td><%= User.human_attribute_name(:x_id) %></td>
+        <td>
+          <% if !@user.x_id.blank? %>
+            <i class="fa-brands fa-x-twitter"></i>
+            <%= link_to @user.x_id, "https://mobile.twitter.com/#{@user.x_id}", target: :_blank, rel: "noopener noreferrer" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= User.human_attribute_name(:gender) %></td>
+        <td><%= @user.gender_i18n if !@user.gender.nil? %></td>
+      </tr>
+      <tr>
+        <td><%= User.human_attribute_name(:created_at) %></td>
+        <td><%= l @user.created_at, format: :ymd %></td>
+      </tr>
+    </table>
+    <%= link_to t('profiles.edit.title'), edit_profile_path %>
+  </div>
+</div>

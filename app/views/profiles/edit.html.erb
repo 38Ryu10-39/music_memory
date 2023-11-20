@@ -1,0 +1,48 @@
+<% content_for(:title, t('.title')) %>
+<div class="form-signin m-auto col-6 offset-3">
+  <%= form_with model: @user, url: profile_path, method: :put, local: true do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="mb-3">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, class: "form-control", placeholder: "田中テスト", value: current_user.name %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, class: "form-control", placeholder: "example@example.com", value: current_user.email %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :profile %><br />
+      <%= f.text_area :profile, class: "form-control", placeholder: "好きな音楽や自己紹介など", value: current_user.profile %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :birthday %><br />
+      <%= f.date_select :birthday, discard_day: true, start_year: 1930, end_year: Time.now.year, default: @user.birthday, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :gender %><br />
+      <%= f.select :gender, User.genders_i18n.keys.map {|k| [User.genders_i18n[k], k]}, { include_blank: false }, selected: @user.gender, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :prefecture_id %><br />
+      <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :x_id %><br />
+      <%= f.text_field :x_id, class: "form-control", placeholder: "(例)@user_name", value: current_user.x_id %>
+    </div>
+    <div class="mb-3">
+      <div>
+        <%= image_tag current_user.avatar_url, size: '160x160', class: 'rounded-circle mb-3 mx-auto d-block' %>
+      </div>
+      <%= f.label :avatar %><br />
+      <%= f.file_field :avatar, class: "form-control" %>
+      <%= f.hidden_field :board_image_cache %>
+    </div>
+    <div class="mb-3 text-center mt-4">
+      <%= f.submit t('.update'), class:"btn btn-primary w-50" %>
+    </div>
+  <% end %>
+  <div class="text-center">
+    <%= link_to t('defaults.back_button'), profile_path %>
+  </div>
+</div>
