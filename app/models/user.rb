@@ -15,8 +15,8 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   enum gender: {other: 0 , male: 1, female: 2}
 
-  def profile_x_id
-    
+  def self.ransackable_attributes(auth_object = nil)
+    ['name']
   end
 
   def mine?(object)

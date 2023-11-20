@@ -11,7 +11,7 @@ RSpec.describe "Users", type: :system do
         fill_in User.human_attribute_name(:email), with: Faker::Internet.unique.email
         fill_in User.human_attribute_name(:password), with: 'password'
         fill_in User.human_attribute_name(:password_confirmation), with: 'password'
-        expect{find('input[name="commit"]').click}.to change{ User.count }.by(1)
+        expect{click_on I18n.t('users.new.submit')}.to change{ User.count }.by(1)
       end
     end
     context '異常系' do
@@ -20,7 +20,7 @@ RSpec.describe "Users", type: :system do
       end
       let!(:user1) { create(:user) }
       it 'カラム未記入では新規登録できない' do
-        expect{find('input[name="commit"]').click}.to change{User.count}.by(0)
+        expect{click_on I18n.t('users.new.submit')}.to change{User.count}.by(0)
         expect(page).to have_content(I18n.t('users.new.title'))
         expect(page).to have_content(I18n.t('defaults.messages.signup_failed'))
       end
@@ -36,13 +36,13 @@ RSpec.describe "Users", type: :system do
       it 'ログイン成功' do
         fill_in User.human_attribute_name(:email), with: user.email
         fill_in User.human_attribute_name(:password), with: 'password'
-        find('input[name="commit"]').click
+        click_on I18n.t('user_sessions.new.submit')
         expect(page).to have_content(user.name)
       end
     end
     context '異常系' do
-      it '空欄のまま新規登録ボタンを押すとログインページへフラッシュメッセージと共に戻される' do
-        find('input[name="commit"]').click
+      it '空欄のままログインボタンを押すとログインページへフラッシュメッセージと共に戻される' do
+        click_on I18n.t('user_sessions.new.submit')
         expect(page).to have_content(I18n.t('defaults.messages.login_failed'))
       end
     end
@@ -107,7 +107,7 @@ RSpec.describe "Users", type: :system do
           find("#user_gender").find("option[value='male']").select_option
           find("#user_prefecture_id").find("option[value='14']").select_option
           fill_in User.human_attribute_name(:x_id), with: '@examplebbbbbbbbb1'
-          find('input[name="commit"]').click
+          click_on I18n.t('profiles.edit.update')
           expect(current_path).to eq profile_path
           expect(page).to have_content('user2')
           expect(page).to have_content('user2')
@@ -124,19 +124,19 @@ RSpec.describe "Users", type: :system do
       it '名前を空欄で更新すると失敗する' do
         fill_in User.human_attribute_name(:name), with: ''
         fill_in User.human_attribute_name(:email), with: 'user2@example.com'
-        find('input[name="commit"]').click
+        click_on I18n.t('profiles.edit.update')
         expect(page).to have_content I18n.t('defaults.messages.mypage_update_failed')
       end
       it 'メールアドレスを空欄で更新すると失敗する' do
         fill_in User.human_attribute_name(:name), with: 'user2'
         fill_in User.human_attribute_name(:email), with: ''
-        find('input[name="commit"]').click
+        click_on I18n.t('profiles.edit.update')
         expect(page).to have_content I18n.t('defaults.messages.mypage_update_failed')
       end
       it '名前とメールアドレスを空欄で更新すると失敗する' do
         fill_in User.human_attribute_name(:name), with: ''
         fill_in User.human_attribute_name(:email), with: ''
-        find('input[name="commit"]').click
+        click_on I18n.t('profiles.edit.update')
         expect(page).to have_content I18n.t('defaults.messages.mypage_update_failed')
       end
     end

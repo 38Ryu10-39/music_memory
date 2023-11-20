@@ -31,6 +31,46 @@ RSpec.describe "Posts", js: true, type: :system do
         end
       end
     end
+    describe '検索機能' do
+      let!(:first_user) { create(:user, name: "first-second") }
+      let!(:second_user) { create(:user, name: "sec-ird") }
+      let!(:third_user) { create(:user, name: "third-ec") }
+      let!(:post_fu_1) { create(:post, music_name: "aaaaa-music", user_id: first_user.id)}
+      let!(:post_fu_2) { create(:post, music_name: "bbbbb-music", user_id: first_user.id)}
+      let!(:post_su_2) { create(:post, music_name: "aaa-music", user_id: second_user.id)}
+      let!(:post_tu_1) { create(:post, music_name: "ec-music", user_id: third_user.id)}
+      before do
+        posts = create_list(:post, 20)
+        visit posts_path
+      end
+      context '曲名検索の場合' do
+        it '曲名を入れて検索するとその曲が表示される' do
+          fill_in "q[music_name_or_memory_or_user_name_cont]", with: 'aaaaa-music'
+          click_on I18n.t('defaults.search')
+          expect(page).to have_content('aaaaa-music')
+        end
+        it '曲名の一部を入れて検索するとその文字が含まれている全ての曲が表示される' do
+          fill_in "q[music_name_or_memory_or_user_name_cont]", with: 'aaa'
+          click_on I18n.t('defaults.search')
+          expect(page).to have_content('aaaaa-music')
+          expect(page).to have_content('aaa-music')
+        end
+      end
+      context 'ユーザー検索の場合' do
+        it 'ユーザー名を入れて検索するとそのユーザーが表示される' do
+          fill_in "q[music_name_or_memory_or_user_name_cont]", with: 'first-second'
+          click_on I18n.t('defaults.search')
+          expect(page).to have_content('first-second')
+        end
+        it 'ユーザー名の一部を入れて検索するとその文字が含まれている全てのユーザーが表示される' do
+          fill_in "q[music_name_or_memory_or_user_name_cont]", with: 'ec'
+          click_on I18n.t('defaults.search')
+          expect(page).to have_content('sec-ir')
+          expect(page).to have_content('third-ec')
+          expect(page).to have_content('ec-music')
+        end
+      end
+    end
   end
 
   describe '新規投稿' do
@@ -47,7 +87,7 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_prefecture_id").find("option[value='10']").select_option
         find("#post_embed_embed_type").find("option[value='youtube']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.new.submit')
         expect(page).to have_content('music-desu')
         click_on 'music-desu'
         expect(page).to have_selector 'iframe', wait: 5
@@ -56,7 +96,7 @@ RSpec.describe "Posts", js: true, type: :system do
       it '曲名と思い出が入力されていれば投稿できる' do
         fill_in Post.human_attribute_name(:music_name), with: 'music-desu'
         fill_in Post.human_attribute_name(:memory), with: 'memory-desu'
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.new.submit')
         expect(page).to have_content('music-desu')
         expect(Post.count).to eq 1
       end
@@ -69,7 +109,7 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_prefecture_id").find("option[value='10']").select_option
         find("#post_embed_embed_type").find("option[value='youtube']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
-        expect{find('input[name="commit"]').click}.to change { Post.count }.by(0)
+        expect{click_on I18n.t('posts.new.submit')}.to change { Post.count }.by(0)
       end
       it '思い出が空の時データの保存に失敗する' do
         fill_in Post.human_attribute_name(:music_name), with: 'music-desu'
@@ -77,14 +117,14 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_prefecture_id").find("option[value='10']").select_option
         find("#post_embed_embed_type").find("option[value='youtube']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
-        expect{find('input[name="commit"]').click}.to change { Post.count }.by(0)
+        expect{click_on I18n.t('posts.new.submit')}.to change { Post.count }.by(0)
       end
       it '曲名と思い出が空の時もデータの保存に失敗する' do
         find("#post_age_group").find("option[value='elementary']").select_option
         find("#post_prefecture_id").find("option[value='10']").select_option
         find("#post_embed_embed_type").find("option[value='youtube']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
-        expect{find('input[name="commit"]').click}.to change { Post.count }.by(0)
+        expect{click_on I18n.t('posts.new.submit')}.to change { Post.count }.by(0)
       end
     end
   end
@@ -102,7 +142,7 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_age_group").find("option[value='elementary']").select_option
         find("#post_prefecture_id").find("option[value='10']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: 'https://www.youtube.com/watch?v=C-o8pTi6vd8&list=PLGAJbrONUQc_l3zZMKsbWqnd-af7psPqT&index=146'
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.new.submit')
         expect(page).to have_content('musicnomemory')
         click_on 'musicnomemory'
         expect(page).to_not have_selector 'iframe', wait: 5
@@ -113,7 +153,7 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_age_group").find("option[value='elementary']").select_option
         find("#post_prefecture_id").find("option[value='10']").select_option
         find("#post_embed_embed_type").find("option[value='youtube']").select_option
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.new.submit')
         expect(page).to have_content('musicnomemory')
         click_on 'musicnomemory'
         expect(page).to_not have_selector 'iframe', wait: 5
@@ -123,7 +163,7 @@ RSpec.describe "Posts", js: true, type: :system do
         fill_in Post.human_attribute_name(:memory), with: 'memory!'
         find("#post_age_group").find("option[value='elementary']").select_option
         find("#post_prefecture_id").find("option[value='10']").select_option
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.new.submit')
         expect(page).to have_content('musicnomemory')
         click_on 'musicnomemory'
         expect(page).to_not have_selector 'iframe', wait: 5
@@ -137,7 +177,7 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_prefecture_id").find("option[value='10']").select_option
         find("#post_embed_embed_type").find("option[value='youtube']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: 'https://www.youtube.com/watch?v=C-o8pTi6vd8&list=PLGAJbrONUQc_l3zZMKsbWqnd-af7psPqT&index=146'
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.new.submit')
         expect(page).to have_content('狂乱Hey Kids!!')
         click_on '狂乱Hey Kids!!'
         expect(page).to have_selector 'iframe', wait: 5
@@ -149,7 +189,7 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_prefecture_id").find("option[value='10']").select_option
         find("#post_embed_embed_type").find("option[value='apple_music']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: 'https://music.apple.com/jp/album/%E3%81%95%E3%81%8F%E3%82%89%E3%82%93%E3%81%BC/76106703?i=76106271'
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.new.submit')
         expect(page).to have_content('さくらんぼ')
         click_on 'さくらんぼ'
         expect(page).to have_selector 'iframe', wait: 5
@@ -161,7 +201,7 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_prefecture_id").find("option[value='10']").select_option
         find("#post_embed_embed_type").find("option[value='spotify']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: 'https://open.spotify.com/intl-ja/artist/0p4nmQO2msCgU4IF37Wi3j'
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.new.submit')
         expect(page).to have_content('girlfriend')
         click_on 'girlfriend'
         expect(page).to have_selector 'iframe', wait: 5
@@ -231,7 +271,7 @@ RSpec.describe "Posts", js: true, type: :system do
       expect(page).to have_selector 'iframe', wait: 5
     end
     context '正常系' do
-      it '全ての値を更新してリダイレクト先で情報が更新されている' do
+      it '全ての値を更新すると情報が更新されている' do
         visit edit_post_path(post1)
         fill_in Post.human_attribute_name(:music_name), with: 'music-desu'
         fill_in Post.human_attribute_name(:memory), with: 'memory-desu'
@@ -239,7 +279,7 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_prefecture_id").find("option[value='10']").select_option
         find("#post_embed_embed_type").find("option[value='youtube']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.edit.submit')
         expect(page).to have_content('music-desu')
         expect(page).to have_content('memory-desu')
         expect(page).to have_content('群馬県')
@@ -256,7 +296,7 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_prefecture_id").find("option[value='']").select_option
         find("#post_embed_embed_type").find("option[value='']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: ""
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.edit.submit')
         expect(page).to have_content I18n.t('defaults.messages.post_update_failed')
       end
       it '曲名が空の時データの保存に失敗する' do
@@ -266,7 +306,7 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_prefecture_id").find("option[value='10']").select_option
         find("#post_embed_embed_type").find("option[value='youtube']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.edit.submit')
         expect(page).to have_content I18n.t('defaults.messages.post_update_failed')
       end
       it '思い出が空の時データの保存に失敗する' do
@@ -276,7 +316,7 @@ RSpec.describe "Posts", js: true, type: :system do
         find("#post_prefecture_id").find("option[value='10']").select_option
         find("#post_embed_embed_type").find("option[value='youtube']").select_option
         fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
-        find('input[name="commit"]').click
+        click_on I18n.t('posts.edit.submit')
         expect(page).to have_content I18n.t('defaults.messages.post_update_failed')
       end
     end

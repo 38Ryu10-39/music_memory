@@ -27,4 +27,12 @@ class Post < ApplicationRecord
                     early_70s: 70,
                     late_70s: 75,
                   }
+  
+  def self.ransackable_attributes(auth_object = nil)
+    ["age_group", "created_at", "embed_id", "memory", "music_name", "prefecture_id", "user_id"]
+  end
+  
+  def self.ransackable_associations(auth_object = nil)
+    ["comments", "embed", "like_users", "likes", "prefecture", "user"]
+  end
 end
