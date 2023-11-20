@@ -9,6 +9,9 @@ ja:
         email: "メールアドレス"
         x_id: "X"
         gender: "性別"
+        profile: "プロフィール"
+        birthday: "誕生日"
+        prefecture_id: "出身地"
         password: "パスワード"
         password_confirmation: "パスワード確認"
       post:

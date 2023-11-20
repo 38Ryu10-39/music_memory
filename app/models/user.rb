@@ -12,6 +12,13 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
 
+  mount_uploader :avatar, AvatarUploader
+  enum gender: {other: 0 , male: 1, female: 2}
+
+  def profile_x_id
+    
+  end
+
   def mine?(object)
     object.user_id == self.id
   end

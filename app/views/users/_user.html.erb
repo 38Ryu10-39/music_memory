@@ -1,22 +1,23 @@
-<div class="card m-3 col-4">
-  <table>
-    <tr>
-      <td>ID</td>
-      <td><%= user.id %></td>
-    </tr>
+<div class="card p-3 col-8 offset-2">
+  <div>
+    <%= image_tag user.avatar_url, size: '200x200', class: 'rounded-circle mr15 d-block mb-5 mx-auto' %>
+  </div>  
+  <table class="border mx-auto">
     <tr>
       <td><%= User.human_attribute_name(:name) %></td>
-      <td><%= user.name %></td>
+      <td><%= link_to user.name, user_path(user.id) %></td>
+    </tr>
+    <tr>
+      <td><%= User.human_attribute_name(:x_id) %></td>
+        <td>
+          <% if !user.x_id.nil? %>
+            <%= link_to user.x_id, "https://mobile.twitter.com/#{user.x_id}", target: :_blank, rel: "noopener noreferrer" %>
+          <% end %>
+        </td>
     </tr>
     <tr>
       <td><%= User.human_attribute_name(:created_at) %></td>
-      <td><%= l user.created_at, format: :short %></td>
+      <td><%= l user.created_at, format: :ym %></td>
     </tr>
-    <% if current_user.id == user.id %>
-      <tr>
-        <td>User</td>
-        <td>current_user</td>
-      </tr>
-    <% end %>
   </table>
 </div>

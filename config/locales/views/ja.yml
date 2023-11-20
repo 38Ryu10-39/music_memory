@@ -6,6 +6,7 @@ ja:
     contributor: "投稿者"
     back_button: "戻る"
     new_post: "新規投稿"
+    mypage: "マイページ"
     messages:
       not_authenticated: "ログインしてください"
       login_success: "ログインしました"
@@ -27,10 +28,14 @@ ja:
       delete_confirm: "削除しますか?"
       post_update_success: "編集しました"
       post_update_failed: "編集に失敗しました"
+      mypage_update_success: "マイページを編集しました"
+      mypage_update_failed: "編集に失敗しました"
   users:
     new:
       title: "新規登録"
       to_login_page: "ログインページはこちら"
+    show:
+      title: "%{user}さん"
   user_sessions:
     new:
       title: "ログイン"
@@ -48,3 +53,9 @@ ja:
     edit:
       title: "投稿編集"
       submit: "更新"
+  profiles:
+    show:
+      title: "マイページ"
+    edit:
+      title: "マイページ編集"
+      update: "更新"
