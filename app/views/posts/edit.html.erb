@@ -1,0 +1,8 @@
+<% content_for(:title, t('.title')) %>
+<div class="form-signin m-auto col-6 offset-3">
+  <h1 class="text-center mb-4"><%= "#{@post.id}:#{@post.music_name}の#{t('.title')}" %></h1>  
+  <%= render 'form', post: @post, embed: @embed, submit: t('posts.edit.submit') %>
+  <div class="text-center">
+    <%= link_to t('defaults.back_button'), post_path(@post) %>
+  </div>
+</div>

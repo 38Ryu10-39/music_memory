@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Posts", type: :system do
+RSpec.describe "Posts", js: true, type: :system do
   describe '投稿一覧' do
     context '投稿が存在しない' do
       before do
@@ -11,21 +11,24 @@ RSpec.describe "Posts", type: :system do
       end
     end
     context '投稿が存在する' do
-      let!(:user1) { create(:user) }
-      let!(:user2) { create(:user) }
-      let!(:post1) { create(:post, user_id: user1.id) }
-      before do
-        login(user2)
-        visit posts_path
-      end
-      it '投稿曲名が表示される' do
-        expect(page).to have_content(post1.music_name)
-      end
-      it '思い出が表示される' do
-        expect(page).to have_content(post1.memory)
-      end
-      it '投稿者名が表示される' do
-        expect(page).to have_content(post1.user.name)
+      context '投稿主が自身の投稿を見るとき' do
+        let!(:user1) { create(:user) }
+        let!(:user2) { create(:user) }
+        let!(:post1) { create(:post, user_id: user1.id) }
+        let!(:post2) { create(:post, user_id: user2.id) }
+        before do
+          login(user1)
+          visit posts_path
+        end
+        it '投稿曲名が表示される' do
+          expect(page).to have_content(post2.music_name)
+        end
+        it '思い出が表示される' do
+          expect(page).to have_content(post2.memory)
+        end
+        it '投稿者名が表示される' do
+          expect(page).to have_content(post2.user.name)
+        end
       end
     end
   end
@@ -37,22 +40,51 @@ RSpec.describe "Posts", type: :system do
       visit new_post_path
     end
     context '正常系' do
-      it '新規投稿ページから投稿できる' do
-        fill_in Post.human_attribute_name(:music_name), with: 'music!'
-        fill_in Post.human_attribute_name(:memory), with: 'memory!'
-        expect{find('input[name="commit"]').click}.to change{ Post.count }.by(1)
-      end
-      it '投稿後に投稿一覧に遷移した際投稿が反映されている' do
-        fill_in Post.human_attribute_name(:music_name), with: 'music!'
-        fill_in Post.human_attribute_name(:memory), with: 'memory!'
+      it '全ての項目を入れて投稿できる' do
+        fill_in Post.human_attribute_name(:music_name), with: 'music-desu'
+        fill_in Post.human_attribute_name(:memory), with: 'memory-desu'
+        find("#post_age_group").find("option[value='elementary']").select_option
+        find("#post_prefecture_id").find("option[value='10']").select_option
+        find("#post_embed_embed_type").find("option[value='youtube']").select_option
+        fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
         find('input[name="commit"]').click
-        expect(page).to have_content('memory!')
+        expect(page).to have_content('music-desu')
+        click_on 'music-desu'
+        expect(page).to have_selector 'iframe', wait: 5
+        expect(Post.count).to eq 1
+      end
+      it '曲名と思い出が入力されていれば投稿できる' do
+        fill_in Post.human_attribute_name(:music_name), with: 'music-desu'
+        fill_in Post.human_attribute_name(:memory), with: 'memory-desu'
+        find('input[name="commit"]').click
+        expect(page).to have_content('music-desu')
+        expect(Post.count).to eq 1
       end
     end
+
     context '異常系' do
-      it '空欄で投稿した時フラッシュメッセージが出て失敗する' do
-        find('input[name="commit"]').click
-        expect(page).to have_content(I18n.t('defaults.messages.post_create_failed'))
+      it '曲名が空の時データの保存に失敗する' do
+        fill_in Post.human_attribute_name(:memory), with: 'memory-desu'
+        find("#post_age_group").find("option[value='elementary']").select_option
+        find("#post_prefecture_id").find("option[value='10']").select_option
+        find("#post_embed_embed_type").find("option[value='youtube']").select_option
+        fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
+        expect{find('input[name="commit"]').click}.to change { Post.count }.by(0)
+      end
+      it '思い出が空の時データの保存に失敗する' do
+        fill_in Post.human_attribute_name(:music_name), with: 'music-desu'
+        find("#post_age_group").find("option[value='elementary']").select_option
+        find("#post_prefecture_id").find("option[value='10']").select_option
+        find("#post_embed_embed_type").find("option[value='youtube']").select_option
+        fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
+        expect{find('input[name="commit"]').click}.to change { Post.count }.by(0)
+      end
+      it '曲名と思い出が空の時もデータの保存に失敗する' do
+        find("#post_age_group").find("option[value='elementary']").select_option
+        find("#post_prefecture_id").find("option[value='10']").select_option
+        find("#post_embed_embed_type").find("option[value='youtube']").select_option
+        fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
+        expect{find('input[name="commit"]').click}.to change { Post.count }.by(0)
       end
     end
   end
@@ -140,18 +172,113 @@ RSpec.describe "Posts", type: :system do
   describe '投稿詳細' do
     let!(:user1) { create(:user) }
     let!(:user2) { create(:user) }
-    let!(:post_show) { create(:post, user: user2, music_name: "あああ") }
     before do
       post_list = create_list(:post, 5)
       login(user1)
-      visit posts_path
     end
-    it '投稿一覧からリンクを押して詳細画面に移動できる' do
-      click_on post_show.music_name
-      expect(page).to have_content(post_show.music_name)
-      expect(page).to have_content(post_show.memory)
-      expect(page).to have_content(post_show.user.name)
+    context '全ての値が入力されている場合' do
+      let!(:post_show) { create(:post, user: user2, music_name: "あああ") }
+      it '全ての項目が表示される' do
+        visit posts_path
+        click_on post_show.music_name
+        expect(page).to have_content(post_show.music_name)
+        expect(page).to have_content(post_show.memory)
+        expect(page).to have_content(post_show.prefecture.name)
+        expect(page).to have_content(post_show.age_group_i18n)
+        expect(page).to have_content(post_show.user.name)
+        expect(page).to have_selector 'iframe', wait: 5
+      end
+    end
+    context '曲名と思い出以外で入力されていないものがある場合' do
+      let!(:post_show_prefecture) { create(:post, prefecture_id: "") }
+      let!(:post_show_age) { create(:post, age_group: "") }
+      let!(:embed_notype) { create(:embed, embed_type: "") }
+      let!(:embed_noidentifer) { create(:embed, identifer: "") }
+      let!(:post_show_type) { create(:post, embed_id: embed_notype.id) }
+      let!(:post_show_identifer) { create(:post, embed_id: embed_noidentifer.id) }
+      it '聞いた地域を入力していないので聞いた地域の項目が表示されない' do
+        visit post_path(post_show_prefecture)
+        expect(page).to_not have_content(Post.human_attribute_name(:prefecture_id))
+      end
+      it '聞いた年代を入力していないので聞いた年代の項目が表示されない' do
+        visit post_path(post_show_age)
+        expect(page).to_not have_content(Post.human_attribute_name(:age_group))
+      end
+      it '動画のタイプを入力していないので動画自体が表示されない' do
+        visit post_path(post_show_type)
+        expect(page).to_not have_selector 'iframe', wait: 5
+      end
+      it 'URLを入力していないので動画自体が表示されない' do
+        visit post_path(post_show_identifer)
+        expect(page).to_not have_selector 'iframe', wait: 5
+      end
+    end
+  end
+
+  describe '投稿編集' do
+    let!(:user1) { create(:user) }
+    let!(:user2) { create(:user) }
+    let!(:post1) { create(:post, user_id: user1.id) }
+    let!(:post2) { create(:post, user_id: user2.id) }
+    before { login(user1) }
+    it '編集前の値は正常に表示される' do
+      visit post_path(post1)
+      expect(page).to have_content(post1.music_name)
+      expect(page).to have_content(post1.memory)
+      expect(page).to have_content(post1.prefecture.name)
+      expect(page).to have_content(post1.age_group_i18n)
+      expect(page).to have_content(post1.user.name)
       expect(page).to have_selector 'iframe', wait: 5
+    end
+    context '正常系' do
+      it '全ての値を更新してリダイレクト先で情報が更新されている' do
+        visit edit_post_path(post1)
+        fill_in Post.human_attribute_name(:music_name), with: 'music-desu'
+        fill_in Post.human_attribute_name(:memory), with: 'memory-desu'
+        find("#post_age_group").find("option[value='elementary']").select_option
+        find("#post_prefecture_id").find("option[value='10']").select_option
+        find("#post_embed_embed_type").find("option[value='youtube']").select_option
+        fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
+        find('input[name="commit"]').click
+        expect(page).to have_content('music-desu')
+        expect(page).to have_content('memory-desu')
+        expect(page).to have_content('群馬県')
+        expect(page).to have_content('小学生時代')
+      end
+    end
+
+    context '異常系' do
+      before { visit edit_post_path(post1) }
+      it '全部空欄にして編集すると失敗する' do
+        fill_in Post.human_attribute_name(:music_name), with: ''
+        fill_in Post.human_attribute_name(:memory), with: ''
+        find("#post_age_group").find("option[value='']").select_option
+        find("#post_prefecture_id").find("option[value='']").select_option
+        find("#post_embed_embed_type").find("option[value='']").select_option
+        fill_in Embed.human_attribute_name(:identifer), with: ""
+        find('input[name="commit"]').click
+        expect(page).to have_content I18n.t('defaults.messages.post_update_failed')
+      end
+      it '曲名が空の時データの保存に失敗する' do
+        fill_in Post.human_attribute_name(:music_name), with: ''
+        fill_in Post.human_attribute_name(:memory), with: 'memory-desu'
+        find("#post_age_group").find("option[value='elementary']").select_option
+        find("#post_prefecture_id").find("option[value='10']").select_option
+        find("#post_embed_embed_type").find("option[value='youtube']").select_option
+        fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
+        find('input[name="commit"]').click
+        expect(page).to have_content I18n.t('defaults.messages.post_update_failed')
+      end
+      it '思い出が空の時データの保存に失敗する' do
+        fill_in Post.human_attribute_name(:music_name), with: 'music-desu'
+        fill_in Post.human_attribute_name(:memory), with: ''
+        find("#post_age_group").find("option[value='elementary']").select_option
+        find("#post_prefecture_id").find("option[value='10']").select_option
+        find("#post_embed_embed_type").find("option[value='youtube']").select_option
+        fill_in Embed.human_attribute_name(:identifer), with: "lskfjlskdjflskdjlfkj"
+        find('input[name="commit"]').click
+        expect(page).to have_content I18n.t('defaults.messages.post_update_failed')
+      end
     end
   end
 end

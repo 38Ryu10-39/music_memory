@@ -3,6 +3,13 @@ class Embed < ApplicationRecord
 
   enum embed_type: { youtube: 0, apple_music: 1, spotify: 2}
 
+  def embed_update_judge(embed_params)
+    self.embed_type = embed_params[:embed_type]
+    self.identifer = embed_params[:identifer]
+    self.embed_judge
+    update(embed_type: self.embed_type, identifer: self.identifer)
+  end
+
   def embed_judge
     if self.embed_type.blank? || self.identifer.blank?
       self.embed_type = ""
