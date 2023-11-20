@@ -7,6 +7,7 @@ ja:
     back_button: "戻る"
     new_post: "新規投稿"
     mypage: "マイページ"
+    search: "検索"
     messages:
       not_authenticated: "ログインしてください"
       login_success: "ログインしました"
@@ -33,12 +34,14 @@ ja:
   users:
     new:
       title: "新規登録"
+      submit: "新規登録する"
       to_login_page: "ログインページはこちら"
     show:
       title: "%{user}さん"
   user_sessions:
     new:
       title: "ログイン"
+      submit: "ログインする"
       to_signup_page: "新規登録はこちら"
       password_forget: "パスワードをお忘れの方はこちら"
   posts:
