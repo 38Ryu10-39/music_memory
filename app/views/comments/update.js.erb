@@ -1,0 +1,7 @@
+$("#js-comment-update-error-<%= @comment.id %>").empty();
+$("#js-comment-create-error").empty();
+$("#js-edit-comment-<%= @comment.id %>").hide();
+$("#js-comment-update-body-<%= @comment.id %>").empty();
+$("#js-comments").html(
+  "<%= j(render 'comments/comments', { comments: @comments }) %>"
+);

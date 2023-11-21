@@ -1,8 +1,11 @@
 <div class="row mb-3">
   <div class="col-lg-8 offset-lg-2">
-    <%= form_with model: comment, url: [post, comment], id: 'new_comment' do |f| %>
+    <%= form_with model: comment, url: [post, comment], id: 'new_comment', local: false do |f| %>
+      <div id="js-comment-create-error">
+        <%= render 'shared/error_messages', object: f.object %>
+      </div>
       <%= f.label :body, t('posts.show.comments_count', number: comments.count) %>
-      <%= f.text_field :body, class: 'form-control mb-3', id: 'js-comment-body', row: 4, placeholder: 'コメント' %>
+      <%= f.text_field :body, class: 'form-control mb-3', id: "js-comment-create-body", row: 4, placeholder: 'コメント' %>
       <%= f.submit t('posts.show.comment_submit'), class: 'btn btn-primary' %>
     <% end %>
   </div>

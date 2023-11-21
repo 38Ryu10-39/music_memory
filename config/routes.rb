@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#create'
   resources :users, only: %i[index new create show destroy]
   resources :posts do
-    resources :comments, only: %i[create update destroy], shallow: true
+    resources :comments, only: %i[create edit update destroy], shallow: true
   end
   resource :profile, only: %i[show edit update]
 end
