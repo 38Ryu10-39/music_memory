@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :embed
+  has_many :comments, dependent: :destroy
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture

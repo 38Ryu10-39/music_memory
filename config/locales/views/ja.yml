@@ -31,6 +31,9 @@ ja:
       post_update_failed: "編集に失敗しました"
       mypage_update_success: "マイページを編集しました"
       mypage_update_failed: "編集に失敗しました"
+      comment_create_success: "コメントしました"
+      comment_create_failed: "コメントできませんでした"
+      comment_destroy_success: "コメントを削除しました"
   users:
     new:
       title: "新規登録"
@@ -53,9 +56,15 @@ ja:
       submit: "投稿"
     show:
       title: "投稿詳細"
+      comment_submit: "コメントする"
+      no_comment: "コメントはありません"
+      comments_count: "%{number}件のコメント"
     edit:
       title: "投稿編集"
       submit: "更新"
+  comments:
+    destroy:
+      confirm: "コメントを削除しますか？"
   profiles:
     show:
       title: "マイページ"

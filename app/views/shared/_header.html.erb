@@ -3,14 +3,14 @@
     <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
       <%= link_to posts_path, data: {"turbolinks" => false}, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" do %>
         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-        <h1 class="fs-2">Music Memory</h1>
+        <h1 class="fs-1">Music Memory</h1>
       <% end %>
 
       <%= search_form_for @q, url: posts_path, class: "col-lg-auto mt-1 mb-lg-0 me-lg-3 text-bottom" do |f| %>
         <%= f.search_field :music_name_or_memory_or_user_name_cont, placeholder: "Search..." %>
         <%= f.submit t('defaults.search') %>
       <% end %>
-            
+
       <ul class="nav nav-pills">
         <% if logged_in? %>
           <li class="nav-item"><%= link_to "About", '#', class: "nav-link" %></li>
