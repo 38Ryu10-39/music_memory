@@ -46,3 +46,11 @@
   </table>
   <%= render 'crud_menu', post: @post %>
 </div>
+<div class="col-8 offset-2">
+  <%= render 'comments/form', { post: @post, comment: @comment, comments: @comments } %>
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2" id="js-comments">
+      <%= render 'comments/comments', { comments: @comments } %>
+    </div>
+  </div>
+</div>

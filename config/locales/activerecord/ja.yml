@@ -22,6 +22,8 @@ ja:
       embed:
         embed_type: "動画タイプ"
         identifer: "動画のURL"
+      comment:
+        body: "コメント"
   attributes:
     created_at: "作成日"
     updated_at: "更新日"

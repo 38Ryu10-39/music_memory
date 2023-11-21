@@ -1,0 +1,16 @@
+<tr id="js-comment-<%= comment.id %>" class="position-relative">
+  <td style="width: 60px">
+    <%= image_tag comment.user.avatar_url, class: 'rounded-circle', size: '50x50' %>
+  </td>
+  <td>
+    <h3 class="small"><%= comment.user.name %></h3>
+    <div>
+      <%= simple_format(comment.body) %>
+    </div>
+    <% if logged_in? && current_user.mine?(comment) %>
+      <div class="position-absolute bottom-0 end-0">
+        <%= render 'comments/btn', comment: comment %>
+      </div>
+    <% end %>
+  </td>
+</tr>
