@@ -2,6 +2,8 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :like_posts, through: :likes, source: :post
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
@@ -22,5 +24,17 @@ class User < ApplicationRecord
 
   def mine?(object)
     object.user_id == self.id
+  end
+
+  def like_sort(post)
+    if self.like?(post)
+      like_posts.destroy(post)
+    else
+      like_posts << post
+    end
+  end
+
+  def like?(post)
+    like_posts.include?(post)
   end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.fdescribe "Comments",js: true, type: :system do
+RSpec.describe "Comments",js: true, type: :system do
   describe 'コメントする' do
     let!(:user1) { create(:user) }
     let!(:user2) { create(:user) }

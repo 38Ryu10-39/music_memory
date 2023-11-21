@@ -44,6 +44,16 @@
       </tr>
     <% end %>
   </table>
+  <% if logged_in? %>
+    <div id="js-like-buttons-<%= @post.id %>">
+      <%= render 'likes/like', post: @post %>
+    </div>
+  <% else %>
+    <div class="fs-4 mb-2">
+      <i class="fa-solid fa-heart like-red"></i>
+      <%= "#{@post.likes.count}いいね" %>
+    </div>
+  <% end %>
   <%= render 'crud_menu', post: @post %>
 </div>
 <div class="col-8 offset-2">
