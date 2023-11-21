@@ -59,10 +59,13 @@ ja:
       comment_submit: "コメントする"
       no_comment: "コメントはありません"
       comments_count: "%{number}件のコメント"
+      not_logged_in_comment: "ログインしていないとコメントは見ることができません"
     edit:
       title: "投稿編集"
       submit: "更新"
   comments:
+    edit:
+      update_submit: "更新する"
     destroy:
       confirm: "コメントを削除しますか？"
   profiles:

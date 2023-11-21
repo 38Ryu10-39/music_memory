@@ -11,6 +11,16 @@
       <div class="position-absolute bottom-0 end-0">
         <%= render 'comments/btn', comment: comment %>
       </div>
+      <div class="col-lg-8 offset-lg-2" style="display: none;" id="js-edit-comment-<%= comment.id %>" class= "form-control comment-post-error">
+        <%= form_with model: comment, local: false do |f| %>
+          <div id="js-comment-update-error-<%= comment.id %>">
+            <%= render 'shared/error_messages', object: f.object %>
+          </div>
+          <%= f.label :body %>
+          <%= f.text_field :body, class: 'form-control mb-3', id: "js-comment-update-body-#{comment.id}", row: 4, placeholder: 'コメント', value: comment.body %>
+          <%= f.submit t('comments.edit.update_submit'), class: 'btn btn-primary' %>
+        <% end %>
+      </div>
     <% end %>
   </td>
 </tr>

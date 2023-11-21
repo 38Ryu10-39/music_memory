@@ -1,11 +1,11 @@
 <ul class="list-unstyled list-inline float-right">
   <li class="list-inline-item">
-    <%= link_to '#' do %>
+    <%= link_to edit_comment_path(comment), remote: true do %>
       <i class="fa-solid fa-pen"></i>
     <% end %>
   </li>
   <li class="list-inline-item">
-    <%= link_to comment_path(comment), method: :delete, data: { confirm: t('comments.destroy.confirm') } do %>
+    <%= link_to comment_path(comment), method: :delete, data: { confirm: t('comments.destroy.confirm') }, remote: true do %>
       <i class="fa-solid fa-trash-can"></i>
     <% end %>
   </li>
