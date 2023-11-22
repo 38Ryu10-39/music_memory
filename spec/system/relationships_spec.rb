@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.fdescribe "Relationships",js: true, type: :system do
+RSpec.describe "Relationships",js: true, type: :system do
   let!(:user1) { create(:user) }
   let!(:user2) { create(:user) }
   let!(:user3) { create(:user) }
@@ -38,7 +38,7 @@ RSpec.fdescribe "Relationships",js: true, type: :system do
       end
     end
   end
-  fdescribe '自身のユーザー詳細ページのフォロー状況' do
+  describe '自身のユーザー詳細ページのフォロー状況' do
     before do
       login(user1)
       visit user_path(user1)
@@ -58,6 +58,7 @@ RSpec.fdescribe "Relationships",js: true, type: :system do
       visit profile_path
     end
     it 'フォロー数、フォロワー数が表示される' do
+      binding.pry
       expect(page).to have_content("フォロー数:")
       expect(page).to have_content("フォロワー数:")
     end

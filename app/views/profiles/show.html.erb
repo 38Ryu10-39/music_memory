@@ -50,5 +50,12 @@
     <div id="js-follow-button-<%= @user.id %>">
       <%= render 'relationships/follow', user: @user %>
     </div>
+    <div>
+      <% if @my_user_room.present? %>
+        <%= link_to t('.room_index'), rooms_path %>
+      <% else %>
+        <p><%= t('.no_room') %></p>
+      <% end %>
+    </div>
   </div>
 </div>

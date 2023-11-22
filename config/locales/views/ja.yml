@@ -45,6 +45,10 @@ ja:
       unfollow: "フォローを外す"
       following_number: "フォロー数"
       follower_number: "フォロワー数"
+      no_room: "チャットルームはありません"
+      chat: "チャットをする"
+      start_chat: "チャットを開始する"
+      room_index: "チャットルーム一覧"
   user_sessions:
     new:
       title: "ログイン"
@@ -75,6 +79,15 @@ ja:
   profiles:
     show:
       title: "マイページ"
+      room_index: "チャットルーム一覧"
+      no_room: "チャットルームはありません"
     edit:
       title: "マイページ編集"
       update: "更新"
+  rooms:
+    index:
+      title: "チャットルーム一覧"
+    show:
+      title: "チャットルーム"
+      chat_submit: "送信"
+      no_chat: "メッセージはありません"

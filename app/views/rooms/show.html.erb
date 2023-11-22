@@ -1,0 +1,30 @@
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="row">
+    <div>
+      <% @user_rooms.each do |u| %>
+        <% current_user == u.user ? @class = "current_user" : @class = ""  %>
+          <% if u.user != current_user %>
+            <h5 class="text-left <%= @class %>" id="<%= @class %>" style="font-size: 30px;"><%= link_to "@#{u.user.name}", user_path(u.user_id) %></h5>
+          <% else %>
+            <h5 class="text-left <%= @class %>" id="<%= @class %>"></h5>
+          <% end %>
+      <% end %>
+      <form>
+        <input type="text" name="message" id="new_message">
+        <input type="hidden" name="room_id" value=<%= @room.id %> class="hidden_room_id">
+        <input type="hidden" name="user_id" value=<%= current_user.id %> class="hidden_user_id">
+        <input type="button" value=<%= t('.chat_submit') %> class="chat_btn">
+      </form>
+      <div id="messages">
+        <% if @chats.present? %>
+          <%= render @chats %>
+        <% else %>
+          <p><%= t('.no_chat') %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_import_module_tag "channels" %>

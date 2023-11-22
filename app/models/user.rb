@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_users, through: :followers, source: :followed
   has_many :follower_users, through: :followeds, source: :follower
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms, through: :user_rooms
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
