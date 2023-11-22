@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.fdescribe "Chats", type: :system do
+RSpec.describe "Chats", type: :system do
   let!(:user1) { create(:user) }
   let!(:user2) { create(:user) }
   describe 'チャットルームに関して' do

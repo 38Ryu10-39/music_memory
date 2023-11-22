@@ -1,0 +1,17 @@
+<% content_for(:title, t('.title')) %>
+<div class="row">
+  <h1 class="p-2 col-4 lh-base"><%= t('.title') %></h1>
+  <button class="col-3 offset-2 btn btn-light">
+    <%= link_to t('notifications.already_read.title'), already_read_notifications_path %>
+  </button>
+  <button class="col-3 btn btn-light">
+    <%= link_to t('.all_read'), all_update_read_notifications_path, method: :put %>
+  </button>
+</div>
+<div>
+  <% if @notifications.present? %>
+    <%= render @notifications %>
+  <% else %>
+    <p><%= t('defaults.messages.no_notification') %></p>
+  <% end %>
+</div>

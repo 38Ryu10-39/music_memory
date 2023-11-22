@@ -1,0 +1,20 @@
+<div id="js-notification-<%= notification.id %>">
+  <div class="row border-top p-3 m-1 aaa">
+    <div class="col-1">
+      <% if !notification.is_read %>
+        <%= link_to notification_path(notification.id), method: :put, remote: true do %>
+          <i class="fa-solid fa-check" id="js-read-button-<%= notification.id %>"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-10 col-offset-1">
+      <%= image_tag(notification.sender.avatar_url, class: 'rounded-circle', size: '16x16') %>
+      <%= notification.notifiable.notification_message %>
+      <div class="text-muted pt-2">
+        <% if notification.notifiable_type == "Comment" %>
+          <%= notification.notifiable.body %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

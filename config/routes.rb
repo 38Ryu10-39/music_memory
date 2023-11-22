@@ -22,4 +22,11 @@ Rails.application.routes.draw do
   resources :rooms, only: %i[index show create destroy] do
     resource :chat, only: %i[create]
   end
+  resources :notifications, only: %i[index update] do
+    collection do
+      put :all_update_read
+      get :already_read
+      delete :delete_read
+    end
+  end
 end
