@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
-  resources :users, only: %i[index new create show destroy]
+  resources :users, only: %i[index new create show] do
+    member do
+      get :follows, :followers
+    end
+    resource :relationships, only: %i[create]
+  end
   resources :posts do
     resources :comments, only: %i[create edit update destroy], shallow: true
     resource :like, only: %i[create]

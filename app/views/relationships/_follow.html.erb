@@ -1,0 +1,11 @@
+<% unless current_user.id == user.id %>
+  <% if current_user.following?(user) %>
+    <%= link_to t('users.show.unfollow'), user_relationships_path(user_id: user), method: :post, remote: true, class: 'btn btn-secondary' %>
+  <% else %>
+    <%= link_to t('users.show.follow'), user_relationships_path(user_id: user), method: :post, remote: true, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+<div>
+  <%= "#{t('users.show.following_number')}: #{user.following_users.count}" %>
+  <%= "#{t('users.show.follower_number')}: #{user.follower_users.count}" %>
+</div>

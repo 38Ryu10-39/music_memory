@@ -41,6 +41,10 @@ ja:
       to_login_page: "ログインページはこちら"
     show:
       title: "%{user}さん"
+      follow: "フォローする"
+      unfollow: "フォローを外す"
+      following_number: "フォロー数"
+      follower_number: "フォロワー数"
   user_sessions:
     new:
       title: "ログイン"
