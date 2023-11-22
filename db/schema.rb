@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_22_003555) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_22_081728) do
   create_table "chats", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "room_id", null: false
@@ -46,6 +46,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_22_003555) do
     t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "notifiable_type", null: false
+    t.integer "notifiable_id", null: false
+    t.integer "sender_id", null: false
+    t.integer "receiver_id", null: false
+    t.boolean "is_read", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
+    t.index ["receiver_id"], name: "index_notifications_on_receiver_id"
+    t.index ["sender_id"], name: "index_notifications_on_sender_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -107,6 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_22_003555) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "notifications", "users", column: "receiver_id"
+  add_foreign_key "notifications", "users", column: "sender_id"
   add_foreign_key "posts", "embeds"
   add_foreign_key "posts", "users"
   add_foreign_key "user_rooms", "rooms"

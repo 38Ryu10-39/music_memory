@@ -8,6 +8,7 @@ ja:
     new_post: "新規投稿"
     mypage: "マイページ"
     search: "検索"
+    home: "投稿一覧"
     messages:
       not_authenticated: "ログインしてください"
       login_success: "ログインしました"
@@ -34,6 +35,9 @@ ja:
       comment_create_success: "コメントしました"
       comment_create_failed: "コメントできませんでした"
       comment_destroy_success: "コメントを削除しました"
+      all_already_read: "通知を全て既読にしました。"
+      destroy_all_notifications: "既読済みの通知を全て削除しました"
+      no_notification: "通知はありません"
   users:
     new:
       title: "新規登録"
@@ -91,3 +95,11 @@ ja:
       title: "チャットルーム"
       chat_submit: "送信"
       no_chat: "メッセージはありません"
+  notifications:
+    already_read:
+      title: "既読済み通知一覧"
+      new_notification_index: "新規通知一覧"
+      destroy_already_read: "既読済みの通知を削除する"
+    index:
+      title: "通知一覧"
+      all_read: "全て既読にする"
