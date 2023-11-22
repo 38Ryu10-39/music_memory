@@ -44,6 +44,11 @@
         <td><%= l @user.created_at, format: :ymd %></td>
       </tr>
     </table>
-    <%= link_to t('profiles.edit.title'), edit_profile_path %>
+    <div>
+      <%= link_to t('profiles.edit.title'), edit_profile_path %>
+    </div>
+    <div id="js-follow-button-<%= @user.id %>">
+      <%= render 'relationships/follow', user: @user %>
+    </div>
   </div>
 </div>
