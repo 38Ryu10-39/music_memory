@@ -19,4 +19,7 @@ Rails.application.routes.draw do
     end
   end
   resource :profile, only: %i[show edit update]
+  resources :rooms, only: %i[index show create destroy] do
+    resource :chat, only: %i[create]
+  end
 end

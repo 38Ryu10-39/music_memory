@@ -28,6 +28,22 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @following_users = @user.following_users
     @follower_users = @user.follower_users
+    @my_user_room = UserRoom.where(user_id: current_user.id)
+    @partner_user_room = UserRoom.where(user_id: @user.id)
+    if @user.id != current_user.id
+      @my_user_room.each do |mu|
+        @partner_user_room.each do |pu|
+          if mu.room_id == pu.room_id
+            @is_room = true
+            @room_id = mu.room_id
+          end
+        end
+      end
+      if !@is_room
+        @room = Room.new
+        @user_room = UserRoom.new
+      end
+    end
   end
   
   def follows

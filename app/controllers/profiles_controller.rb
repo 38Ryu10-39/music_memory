@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   def show
     @user = current_user
+    @my_user_room = UserRoom.where(user_id: current_user.id)
   end
 
   def edit

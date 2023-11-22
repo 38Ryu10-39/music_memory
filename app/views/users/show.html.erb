@@ -7,6 +7,9 @@
       <div id="js-follow-button-<%= @user.id %>">
         <%= render 'relationships/follow', user: @user %>
       </div>
+      <div>
+        <%= render 'rooms/chatroom', user: @user, is_room: @is_room, room_id: @room_id, room: @room, user_room: @user_room, my_user_room: @my_user_room %>
+      </div>
     </div>
   </div>
 </div>
