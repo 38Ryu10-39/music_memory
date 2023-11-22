@@ -1,6 +1,7 @@
 <% content_for(:title, t('.title')) %>
 <div class="container">
   <div class="row">
+    <div id="jmap" class="col-10 offset-1"></div>
     <div class="col-10 offset-1">
       <h1 class="mt-4 mb-4"><%= t('.title') %></h1>
       <% if @posts.present? %>
@@ -12,3 +13,6 @@
     <%= paginate @posts, theme: 'bootstrap-5' %>
   </div>
 </div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<%= javascript_import_module_tag "posts/index" %>
+<%= javascript_import_module_tag 'jmap' %>
