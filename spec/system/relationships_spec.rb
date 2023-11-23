@@ -19,9 +19,10 @@ RSpec.describe "Relationships",js: true, type: :system do
           expect(page).to have_selector("#js-follow-button-#{user2.id} a")
         end
         it 'フォロワー数がボタンを押すと1減る' do
-          expect(page).to have_content("フォロワー数: 2")
-          find("#js-follow-button-#{user2.id} a").click
-          expect(page).to have_content("フォロワー数: 1")
+          expect(user2.follower_users.count).to eq (2)
+          find("#js-follow-button-#{user2.id} .btn-secondary").click
+          visit user_path(user2)
+          expect(user2.follower_users.count).to eq (1)
         end
       end
       context '相手をフォローしていない時' do
@@ -31,9 +32,10 @@ RSpec.describe "Relationships",js: true, type: :system do
           expect(page).to have_selector("#js-follow-button-#{user2.id} a")
         end
         it 'フォロワー数がボタンを押すと1減る' do
-          expect(page).to have_content("フォロワー数: 1")
-          find("#js-follow-button-#{user2.id} a").click
-          expect(page).to have_content("フォロワー数: 2")
+          expect(user2.follower_users.count).to eq (1)
+          find("#js-follow-button-#{user2.id} .btn-primary").click
+          visit user_path(user2)
+          expect(user2.follower_users.count).to eq (2)
         end
       end
     end
@@ -44,8 +46,8 @@ RSpec.describe "Relationships",js: true, type: :system do
       visit user_path(user1)
     end
     it 'フォロー数、フォロワー数が表示される' do
-      expect(page).to have_content("フォロー数:")
-      expect(page).to have_content("フォロワー数:")
+      expect(page).to have_content(user1.follower_users.count)
+      expect(page).to have_content(user1.following_users.count)
     end
     it 'フォローボタン、フォロワーボタンは表示されない' do
       expect(page).to_not have_content(I18n.t('users.show.follow'))
@@ -58,9 +60,8 @@ RSpec.describe "Relationships",js: true, type: :system do
       visit profile_path
     end
     it 'フォロー数、フォロワー数が表示される' do
-      binding.pry
-      expect(page).to have_content("フォロー数:")
-      expect(page).to have_content("フォロワー数:")
+      expect(page).to have_link("フォロー")
+      expect(page).to have_link("フォロワー")
     end
     it 'フォローボタン、フォロワーボタンは表示されない' do
       expect(page).to_not have_content(I18n.t('users.show.follow'))

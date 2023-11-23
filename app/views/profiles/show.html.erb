@@ -1,60 +1,78 @@
 <% content_for(:title, t('.title')) %>
-<div class="m-3 p-4">
-  <h2><%= t('.title') %></h2>
-  <div class="card p-3 col-8 offset-2">
-    <div>
-      <%= image_tag @user.avatar_url, size: '200x200', class: 'rounded-circle mr15 d-block mb-5 mx-auto' %>
-    </div>  
-    <table>
-      <tr>
-        <td><%= User.human_attribute_name(:name) %></td>
-        <td><%= @user.name %></td>
-      </tr>
-      <tr>
-        <td><%= User.human_attribute_name(:email) %></td>
-        <td><%= @user.email %></td>
-      </tr>
-      <tr>
-        <td><%= User.human_attribute_name(:profile) %></td>
-        <td><%= @user.profile if !@user.profile.nil? %></td>
-      </tr>
-      <tr>
-        <td><%= User.human_attribute_name(:birthday) %></td>
-        <td><%= @user.birthday.strftime("%Y/%m") if !@user.birthday.nil? %></td>
-      </tr>
-      <tr>
-        <td><%= User.human_attribute_name(:prefecture_id) %></td>
-        <td><%= @user.prefecture.name if !@user.prefecture.nil? %></td>
-      </tr>
-      <tr>
-        <td><%= User.human_attribute_name(:x_id) %></td>
-        <td>
-          <% if !@user.x_id.blank? %>
-            <i class="fa-brands fa-x-twitter"></i>
-            <%= link_to @user.x_id, "https://mobile.twitter.com/#{@user.x_id}", target: :_blank, rel: "noopener noreferrer" %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td><%= User.human_attribute_name(:gender) %></td>
-        <td><%= @user.gender_i18n if !@user.gender.nil? %></td>
-      </tr>
-      <tr>
-        <td><%= User.human_attribute_name(:created_at) %></td>
-        <td><%= l @user.created_at, format: :ymd %></td>
-      </tr>
-    </table>
-    <div>
-      <%= link_to t('profiles.edit.title'), edit_profile_path %>
+<div class="container">
+  <div class="row">
+    <h2 class="pt-3 pb-3"><%= t('.title') %></h2>
+    <div class="card p-3 col-6">
+      <div>
+        <%= image_tag @user.avatar_url, size: '200x200', class: 'rounded-circle mr15 d-block mb-5 mx-auto' %>
+      </div>  
+      <table>
+        <tr>
+          <td><%= User.human_attribute_name(:name) %></td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td><%= User.human_attribute_name(:email) %></td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td><%= User.human_attribute_name(:profile) %></td>
+          <td><%= @user.profile if !@user.profile.nil? %></td>
+        </tr>
+        <tr>
+          <td><%= User.human_attribute_name(:birthday) %></td>
+          <td><%= @user.birthday.strftime("%Y/%m") if !@user.birthday.nil? %></td>
+        </tr>
+        <tr>
+          <td><%= User.human_attribute_name(:prefecture_id) %></td>
+          <td><%= @user.prefecture.name if !@user.prefecture.nil? %></td>
+        </tr>
+        <tr>
+          <td><%= User.human_attribute_name(:x_id) %></td>
+          <td>
+            <% if !@user.x_id.blank? %>
+              <i class="fa-brands fa-x-twitter"></i>
+              <%= link_to @user.x_id, "https://mobile.twitter.com/#{@user.x_id}", target: :_blank, rel: "noopener noreferrer" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= User.human_attribute_name(:gender) %></td>
+          <td><%= @user.gender_i18n if !@user.gender.nil? %></td>
+        </tr>
+        <tr>
+          <td><%= User.human_attribute_name(:created_at) %></td>
+          <td><%= l @user.created_at, format: :ymd %></td>
+        </tr>
+      </table>
+      <div>
+        <%= link_to t('profiles.edit.title'), edit_profile_path %>
+      </div>
+      <div id="js-follow-button-<%= @user.id %>">
+        <%= render 'relationships/follow', user: @user %>
+      </div>
+      <div>
+        <% if @my_user_room.present? %>
+          <%= link_to t('.room_index'), rooms_path %>
+        <% else %>
+          <p><%= t('.no_room') %></p>
+        <% end %>
+      </div>
     </div>
-    <div id="js-follow-button-<%= @user.id %>">
-      <%= render 'relationships/follow', user: @user %>
-    </div>
-    <div>
-      <% if @my_user_room.present? %>
-        <%= link_to t('.room_index'), rooms_path %>
-      <% else %>
-        <p><%= t('.no_room') %></p>
+    <div class="col-6 card">
+      <%= link_to t('.like_posts'), likes_profile_path %>
+      <% @posts.each do |post| %>
+        <div class="card">
+          <table>
+            <tr><td><%= link_to post.music_name, post_path(post), class: "fs-1" %></td></tr>
+            <tr><td><%= post.memory %></td></tr>
+            <tr><td><%= post.age_group_i18n if post.age_group.present? %></td></tr>
+            <% if post.prefecture.present? %>
+              <tr><td><%= post.prefecture.name %></td></tr>
+            <% end %>
+            <tr><td><%= link_to "#{t('defaults.contributor')}: #{post.user.name}", user_path(post.user) %></td></tr>
+          </table>
+        </div>
       <% end %>
     </div>
   </div>
