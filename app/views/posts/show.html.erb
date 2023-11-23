@@ -10,11 +10,9 @@
       <% elsif @post.embed.spotify? %>
         <%= content_tag 'iframe', nil, allow: "autoplay; encrypted-media *; fullscreen *; clipboard-write; picture-in-picture",loading: "lazy", frameborder: "0", height: "200px", style: "width:100%;max-width:660px;overflow:hidden;border-radius:10px;max-width:600px;", src: "https://open.spotify.com/embed/track/#{@post.embed.identifer}?utm_source=generator" %>
       <% end %>
-      <p><%= @post.embed.embed_type_i18n %></p>
-      <p><%= @post.embed.identifer %></p>
     <% end %>
   </div>
-  <table class="table table-light">
+  <table class="table table-striped">
     <tr>
       <th><%= t('defaults.contributor') %></th>
       <% if logged_in? && current_user.mine?(@post) %>

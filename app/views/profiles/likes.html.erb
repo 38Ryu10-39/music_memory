@@ -1,0 +1,14 @@
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <h1 class="mt-4 mb-4"><%= t('.title') %></h1>
+      <% if @posts.present? %>
+        <%= render partial: 'posts/post', collection: @posts %>
+      <% else %>
+        <div><%= t('defaults.messages.no_posts') %></div>
+      <% end %>
+    </div>
+    <%= paginate @posts, theme: 'bootstrap-5' %>
+  </div>
+</div>

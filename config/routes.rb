@@ -6,19 +6,17 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
   resources :users, only: %i[index new create show] do
-    member do
-      get :follows, :followers
-    end
     resource :relationships, only: %i[create]
   end
   resources :posts do
     resources :comments, only: %i[create edit update destroy], shallow: true
     resource :like, only: %i[create]
+  end
+  resource :profile, only: %i[show edit update] do
     collection do
-      get :likes
+      get :follows, :followers, :likes
     end
   end
-  resource :profile, only: %i[show edit update]
   resources :rooms, only: %i[index show create destroy] do
     resource :chat, only: %i[create]
   end

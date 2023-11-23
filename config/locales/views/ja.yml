@@ -9,6 +9,8 @@ ja:
     mypage: "マイページ"
     search: "検索"
     home: "投稿一覧"
+    following_number: "フォロー"
+    follower_number: "フォロワー"
     messages:
       not_authenticated: "ログインしてください"
       login_success: "ログインしました"
@@ -47,8 +49,8 @@ ja:
       title: "%{user}さん"
       follow: "フォローする"
       unfollow: "フォローを外す"
-      following_number: "フォロー数"
-      follower_number: "フォロワー数"
+      following_number: "フォロー"
+      follower_number: "フォロワー"
       no_room: "チャットルームはありません"
       chat: "チャットをする"
       start_chat: "チャットを開始する"
@@ -85,9 +87,16 @@ ja:
       title: "マイページ"
       room_index: "チャットルーム一覧"
       no_room: "チャットルームはありません"
+      like_posts: ">いいねした投稿"
     edit:
       title: "マイページ編集"
       update: "更新"
+    follows:
+      title: "フォロー一覧"
+    followers:
+      title: "フォロワー一覧"
+    likes:
+      title: "いいねした投稿"
   rooms:
     index:
       title: "チャットルーム一覧"
@@ -103,3 +112,6 @@ ja:
     index:
       title: "通知一覧"
       all_read: "全て既読にする"
+  relationships:
+    follow: "フォローする"
+    unfollow: "フォローを外す"

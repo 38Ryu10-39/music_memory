@@ -5,6 +5,8 @@ class Relationship < ApplicationRecord
 
   after_create_commit :create_notifications
 
+  validates :follower_id, uniqueness: { scope: :followed_id }
+
   def notification_message
     follower = User.find(self.follower_id)
     follower_link = ActionController::Base.helpers.link_to("#{follower.name} さん", Rails.application.routes.url_helpers.user_path(follower.id))

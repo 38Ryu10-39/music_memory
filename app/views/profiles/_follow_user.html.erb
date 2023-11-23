@@ -1,0 +1,5 @@
+<tr>
+  <th scope="row"><%= link_to follow_user.name, user_path(follow_user.id) %></th>
+  <td><%= follow_user.x_id if follow_user.x_id.present? %></td>
+  <td><%= truncate(follow_user.profile) if follow_user.profile.present? %></td>
+</tr>

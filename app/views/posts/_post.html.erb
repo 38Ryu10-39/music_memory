@@ -2,7 +2,7 @@
   <div class="row">
     <div class="card p-4">
       <table>
-        <tr><td><%= link_to post.music_name, post_path(post), class: "fs-2" %></td></tr>
+        <tr><td><%= link_to post.music_name, post_path(post), class: "fs-1" %></td></tr>
         <tr><td><%= post.memory %></td></tr>
         <tr><td><%= post.age_group_i18n %></td></tr>
         <% if post.prefecture.present? %>
@@ -10,7 +10,7 @@
         <% end %>
         <tr><td><%= link_to "#{t('defaults.contributor')}: #{post.user.name}", user_path(post.user) %></td></tr>
       </table>
-      <%= render 'crud_menu', post: post %>
+      <%= render 'posts/crud_menu', post: post %>
     </div>
   </div>
 </div>
