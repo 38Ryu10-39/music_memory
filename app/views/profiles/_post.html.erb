@@ -1,13 +1,16 @@
-<div class="card content-card border-left col-sm-12 col-md-5 col-lg-3 position-relative m-1">
+<div class="card content-card border-left position-relative">
   <div class="m-2 text-center">
     <%= link_to post.music_name, post_path(post), class: "fs-1" %>
   </div>
   <div class="card-body">
     <div>
-      <%= "#{t('defaults.contributor')}: " %><%= link_to post.user.name, user_path(post.user) %>
+      <%= post.user.name %>
     </div>
     <div>
       <%= post.age_group_i18n %>
+    </div>
+    <div>
+      <%= post.memory %>
     </div>
     <div>
       <%= "#{post.prefecture.name}" if post.prefecture.present? %>

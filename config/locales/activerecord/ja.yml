@@ -16,7 +16,7 @@ ja:
         password_confirmation: "パスワード確認"
       post:
         music_name: "曲名"
-        memory: "曲の感想や思い出"
+        memory: "思い出"
         age_group: "曲を聞いた年代"
         prefecture_id: "曲を聞いた地域"
       embed:
@@ -36,7 +36,7 @@ ja:
     post:
       age_group:
         childhood: "幼少期"
-        elementary: "小学生時代"
+        elementary: "小学生"
         middle: "中学時代"
         high: "高校時代"
         early_20s: "大学時代~20代前半"

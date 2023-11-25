@@ -18,7 +18,7 @@
           </div>
           <%= f.label :body %>
           <%= f.text_field :body, class: 'form-control mb-3', id: "js-comment-update-body-#{comment.id}", row: 4, placeholder: 'コメント', value: comment.body %>
-          <%= f.submit t('comments.edit.update_submit'), class: 'btn btn-primary' %>
+          <%= f.submit t('comments.edit.update_submit'), class: 'btn btn-orange' %>
         <% end %>
       </div>
     <% end %>

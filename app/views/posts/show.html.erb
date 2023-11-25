@@ -1,5 +1,5 @@
 <% content_for(:title, "#{Post.human_attribute_name(:music_name)}:#{@post.music_name}") %>
-<div class="col-8 offset-2">
+<div class="col-8 offset-2 position-relative">
   <h1 class="pb-4 pt-4"><%= t('.title') %></h1>
   <div class="text-center">
     <% if !@post.embed.embed_type.blank? && !@post.embed.identifer.blank? %>
@@ -14,7 +14,7 @@
   </div>
   <table class="table table-striped">
     <tr>
-      <th><%= t('defaults.contributor') %></th>
+      <td><%= t('defaults.contributor') %></td>
       <% if logged_in? && current_user.mine?(@post) %>
         <td><%= @post.user.name %></td>
       <% else %>
@@ -22,22 +22,22 @@
       <% end %>
     </tr>
     <tr>
-      <th><%= Post.human_attribute_name(:music_name) %></th>
+      <td><%= Post.human_attribute_name(:music_name) %></td>
       <td><%= @post.music_name %></td>
     </tr>
     <tr>
-      <th><%= Post.human_attribute_name(:memory) %></th>
+      <td><%= Post.human_attribute_name(:memory) %></td>
       <td><%= @post.memory %></td>
     </tr>
     <% if @post.age_group.present? %>
       <tr>
-        <th><%= Post.human_attribute_name(:age_group) %></th>
+        <td><%= Post.human_attribute_name(:age_group) %></td>
         <td><%= @post.age_group_i18n %></td>
       </tr>
     <% end %>
     <% if @post.prefecture.present? %>
       <tr>
-        <th><%= Post.human_attribute_name(:prefecture_id) %></th>
+        <td><%= Post.human_attribute_name(:prefecture_id) %></td>
         <td><%= @post.prefecture.name %></td>
       </tr>
     <% end %>

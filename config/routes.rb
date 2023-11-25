@@ -12,9 +12,10 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create edit update destroy], shallow: true
     resource :like, only: %i[create]
   end
+  resources :prefectures, only: %i[show]
   resource :profile, only: %i[show edit update] do
     collection do
-      get :follows, :followers, :likes
+      get :follows, :followers, :likes, :my_posts
     end
   end
   resources :rooms, only: %i[index show create destroy] do

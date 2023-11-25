@@ -3,14 +3,14 @@
   <div class="row">
     <div class="col-10 offset-1">
       <h1 class="mt-4 mb-4"><%= t('.title') %></h1>
-      <% if @like_posts.present? %>
-        <%= render partial: 'post', collection: @like_posts %>
+      <% if @my_posts.present? %>
+        <%= render partial: 'post', collection: @my_posts %>
       <% else %>
         <div><%= t('defaults.messages.no_posts') %></div>
       <% end %>
     </div>
     <div class="mt-5">
-      <%= paginate @like_posts, theme: 'bootstrap-5' %>
+      <%= paginate @my_posts, theme: 'bootstrap-5' %>
     </div>
   </div>
 </div>

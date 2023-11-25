@@ -2,7 +2,7 @@
   <% if current_user.following?(user) %>
     <%= link_to t('relationships.unfollow'), user_relationships_path(user_id: user), method: :post, remote: true, class: 'btn btn-secondary' %>
   <% else %>
-    <%= link_to t('relationships.follow'), user_relationships_path(user_id: user), method: :post, remote: true, class: 'btn btn-primary' %>
+    <%= link_to t('relationships.follow'), user_relationships_path(user_id: user), method: :post, remote: true, class: 'btn btn-orange' %>
   <% end %>
 <% end %>
 <div>

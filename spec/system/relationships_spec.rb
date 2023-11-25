@@ -33,7 +33,7 @@ RSpec.describe "Relationships",js: true, type: :system do
         end
         it 'フォロワー数がボタンを押すと1減る' do
           expect(user2.follower_users.count).to eq (1)
-          find("#js-follow-button-#{user2.id} .btn-primary").click
+          find("#js-follow-button-#{user2.id} .btn-orange").click
           visit user_path(user2)
           expect(user2.follower_users.count).to eq (2)
         end
