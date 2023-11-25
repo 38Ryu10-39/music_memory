@@ -1,3 +1,4 @@
+<% breadcrumb :rooms_show, @room %>
 <% content_for(:title, t('.title')) %>
 <div class="container">
   <div class="row">
@@ -5,9 +6,9 @@
       <% @user_rooms.each do |u| %>
         <% current_user == u.user ? @class = "current_user" : @class = ""  %>
           <% if u.user != current_user %>
-            <h5 class="text-left <%= @class %>" id="<%= @class %>" style="font-size: 30px;"><%= link_to "@#{u.user.name}", user_path(u.user_id) %></h5>
+            <h1 class="text-left <%= @class %>" id="<%= @class %>"><%= link_to "#{u.user.name}", user_path(u.user_id) %></h1>
           <% else %>
-            <h5 class="text-left <%= @class %>" id="<%= @class %>"></h5>
+            <h1 class="text-left <%= @class %>" id="<%= @class %>"></h1>
           <% end %>
       <% end %>
       <form>

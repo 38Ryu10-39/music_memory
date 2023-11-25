@@ -1,8 +1,0 @@
-<% content_for(:title, '.title') %>
-<% if @users.present? %>
-  <%= render @users %>
-<% else %>
-  <div>
-    <%= t('defaults.messages.no_users') %>
-  </div>
-<% end %>
