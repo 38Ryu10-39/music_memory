@@ -89,7 +89,7 @@ ja:
       room_index: "チャットルーム一覧"
       no_room: "チャットルームはありません"
       like_posts: "> いいねした投稿"
-      my_posts: "> 投稿済みの投稿"
+      my_posts: "> あなたの投稿"
     edit:
       title: "マイページ編集"
       update: "更新"
@@ -100,7 +100,7 @@ ja:
     likes:
       title: "いいねした投稿"
     my_posts:
-      title: "投稿済みの投稿"
+      title: "あなたの投稿"
   rooms:
     index:
       title: "チャットルーム一覧"

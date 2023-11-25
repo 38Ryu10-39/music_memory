@@ -1,3 +1,4 @@
+<% breadcrumb :profiles_edit %>
 <% content_for(:title, t('.title')) %>
 <div class="form-signin m-auto col-6 offset-3">
   <%= form_with model: @user, url: profile_path, method: :put, local: true do |f| %>
