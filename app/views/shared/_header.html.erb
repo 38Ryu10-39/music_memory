@@ -1,38 +1,41 @@
-<header class="p-3 mb-3 border-bottom bg-success p-2 bg-opacity-10">
+<header class="p-3 border-bottom bg-header">
   <div class="container">
     <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
       <%= link_to posts_path, data: {"turbolinks" => false}, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" do %>
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-        <h1 class="fs-1 text-success">Music Memory</h1>
+        <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        <h1 class="fs-1 text-white">Music Memory</h1>
+        <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
       <% end %>
-
-      <%= search_form_for @q, url: posts_path, class: "col-lg-auto mt-1 mb-lg-0 me-lg-3 text-bottom" do |f| %>
-        <%= f.search_field :music_name_or_memory_or_user_name_cont, placeholder: "Search..." %>
-        <%= f.submit t('defaults.search') %>
-      <% end %>
-
-      <ul class="nav nav-pills">
-        <% if logged_in? %>
-          <li class="nav-item">
-            <%= link_to notifications_path, class: "nav-link" do %>
-              <i class="fa-solid fa-bell text-success"></i>
-            <% end %>
-          </li>
-          <li class="nav-item"><%= link_to t('defaults.mypage'), profile_path, class: "nav-link text-success" %></li>
-          <li class="nav-item"><%= link_to t('defaults.new_post'), new_post_path, class: "nav-link text-success" %></li>
-          <li class="nav-item"><%= link_to t('defaults.logout'), logout_path, method: :delete, class: "nav-link text-success" %></li>
-        <% else %>
-          <li class="nav-item"><%= link_to t('defaults.home'), posts_path, class: "nav-link text-success" %></li>
-          <li class="nav-item"><%= link_to "About", '#', class: "nav-link text-success" %></li>
-          <li class="nav-item"><%= link_to t('defaults.login'), login_path, class: "nav-link text-success" %></li>
-          <li class="nav-item"><%= link_to t('defaults.signup'), signup_path, class: "nav-link text-success" %></li>
-        <% end %>
-      </ul>
-      <div class="text-right">
-        <% if logged_in? %>
-          <small>[ID:<%= current_user.id %>]<%= current_user.name %></small>
+      
+      <div class="nav-link">
+        <%= search_form_for @q, url: posts_path, class: "col-lg-auto mt-1 mb-lg-0 me-lg-3 text-bottom" do |f| %>
+          <%= f.search_field :music_name_or_memory_or_user_name_cont, placeholder: "Search..." %>
+          <%= f.submit t('defaults.search'), class: "btn-search" %>
         <% end %>
       </div>
+
+      <ul class="nav nav-pills pt-1">
+        <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to notifications_path, class: "nav-link text-white" do %>
+              <i class="fa-solid fa-bell"></i>
+            <% end %>
+          </li>
+          <li class="nav-item"><%= link_to t('defaults.mypage'), profile_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to t('defaults.new_post'), new_post_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to t('defaults.logout'), logout_path, method: :delete, class: "nav-link text-white" %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to t('defaults.home'), posts_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "About", '#', class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to t('defaults.login'), login_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to t('defaults.signup'), signup_path, class: "nav-link text-white" %></li>
+        <% end %>
+      </ul>
+      <li class="nav-item pt-1">
+        <% if logged_in? %>
+          <p class="text-white nav-link">[ID:<%= current_user.id %>]<%= current_user.name %></p>
+        <% end %>
+      </li>
     </div>
   </div>
 </header>

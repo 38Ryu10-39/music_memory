@@ -1,0 +1,12 @@
+<% content_for(:title, t('.title', prefecture: Prefecture.find(params[:id]).name)) %>
+<h1 class="container-fluid pt-5 pb-5"><%= t('.title', prefecture: Prefecture.find(params[:id]).name) %></h1>
+<% if @posts.present? %>
+  <div class="p-2 m-4 ">
+    <%= render @posts %>
+    <%= paginate @posts, theme: 'bootstrap-5' %>
+  </div>
+<% else %>
+  <div>
+    <p class="text-center"><%= "#{Prefecture.find(params[:id]).name}の投稿はありません" %></p>
+  </div>
+<% end %>

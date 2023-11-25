@@ -2,7 +2,8 @@ class ProfilesController < ApplicationController
   def show
     @user = current_user
     @my_user_room = UserRoom.where(user_id: current_user.id)
-    @posts = current_user.like_posts.includes(:user).order(created_at: :desc).first(5)
+    @like_posts = current_user.like_posts.includes(:user).order(created_at: :desc).last(5)
+    @my_posts = current_user.posts.order(created_at: :desc).last(5)
   end
 
   def edit
@@ -28,7 +29,11 @@ class ProfilesController < ApplicationController
   end
 
   def likes
-    @posts = current_user.like_posts.includes(:user).order(created_at: :desc).page(params[:page]).per(10)
+    @like_posts = current_user.like_posts.includes(:user).order(created_at: :desc).page(params[:page]).per(12)
+  end
+
+  def my_posts
+    @my_posts = current_user.posts.order(created_at: :desc).page(params[:page]).per(12)
   end
 
   private

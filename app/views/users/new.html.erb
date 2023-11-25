@@ -1,6 +1,6 @@
 <% content_for(:title, t('.title')) %>
 <div class="form-signin m-auto col-6 offset-3">
-  <h1 class="text-center mb-4"><%= t('.title') %></h1>  
+  <h1 class="text-center m-4"><%= t('.title') %></h1>  
   <%= form_with model: @user, local: true do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="mb-3">
@@ -20,7 +20,7 @@
       <%= f.password_field :password_confirmation, class: "form-control", placeholder: "password" %>
     </div>
     <div class="mb-3 text-center mt-4">
-      <%= f.submit t('.submit'), class:"btn btn-primary w-50" %>
+      <%= f.submit t('.submit'), class:"btn btn-orange w-50" %>
     </div>
   <% end %>
   <div class="text-center">

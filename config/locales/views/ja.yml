@@ -11,6 +11,7 @@ ja:
     home: "投稿一覧"
     following_number: "フォロー"
     follower_number: "フォロワー"
+    age_group: "年代"
     messages:
       not_authenticated: "ログインしてください"
       login_success: "ログインしました"
@@ -87,7 +88,8 @@ ja:
       title: "マイページ"
       room_index: "チャットルーム一覧"
       no_room: "チャットルームはありません"
-      like_posts: ">いいねした投稿"
+      like_posts: "> いいねした投稿"
+      my_posts: "> 投稿済みの投稿"
     edit:
       title: "マイページ編集"
       update: "更新"
@@ -97,6 +99,8 @@ ja:
       title: "フォロワー一覧"
     likes:
       title: "いいねした投稿"
+    my_posts:
+      title: "投稿済みの投稿"
   rooms:
     index:
       title: "チャットルーム一覧"
@@ -115,3 +119,6 @@ ja:
   relationships:
     follow: "フォローする"
     unfollow: "フォローを外す"
+  prefectures:
+    show:
+      title: "%{prefecture}: 投稿一覧"

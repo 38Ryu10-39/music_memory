@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]).per(10)
+    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]).per(12)
   end
 
   def new

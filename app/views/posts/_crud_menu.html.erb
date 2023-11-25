@@ -1,4 +1,4 @@
-<ul class="list-unstyled list-inline float-right">
+<ul class="list-unstyled list-inline float-right position-absolute bottom-0 end-0 m-3">
   <li class="list-inline-item" id="search-post-<%= post.id %>">
     <% unless current_page?(post_path(post)) %>
       <%= link_to post_path(post), id: "show-post-#{post.id}" do %>
