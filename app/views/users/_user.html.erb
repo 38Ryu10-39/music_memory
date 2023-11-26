@@ -1,0 +1,13 @@
+<div class="container">
+  <div>
+    <%= image_tag user.avatar_url, size: '200x200', class: 'rounded-circle mr15 d-block mb-5 mx-auto' %>
+  </div>  
+  <div class="m-3 fs-4"><%= user.name %></div>
+  <div class="m-3"><%= user.profile if !user.profile.nil? %></div>
+  <div class="m-3">
+    <% if !user.x_id.blank? %>
+      <i class="fa-brands fa-x-twitter"></i>
+      <%= link_to user.x_id, "https://mobile.twitter.com/#{user.x_id}", target: :_blank, rel: "noopener noreferrer" %>
+    <% end %>
+  </div>
+</div>

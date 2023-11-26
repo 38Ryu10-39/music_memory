@@ -1,0 +1,30 @@
+<% if user.id == current_user.id %>
+  <% if my_user_room.present? %>
+    <% if @my_user_room.present? %>
+      <%= link_to t('users.show.room_index'), rooms_path %>
+    <% else %>
+      <p><%= t('users.show.no_room') %></p>
+    <% end %>
+  <% else %>
+    <p><%= t('users.show.no_room') %></p>
+  <% end %>
+<% else %>
+  <% if is_room == true %>
+    <%= link_to room_path(room_id) do %>
+      <i class="fa-brands fa-rocketchat fs-3"></i><%= t('users.show.chat') %>
+    <% end %>
+  <% else %>
+    <div>
+      <%= form_with model: room do |f| %>
+        <div class="mb-3">
+          <%= f.fields_for user_room do |e| %>
+            <%= e.hidden_field :user_id, value: user.id %>
+          <% end %>
+        </div>
+        <div class="mb-3 mt-4">
+          <%= f.submit t('users.show.start_chat'), class:"btn btn-orange" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

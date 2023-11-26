@@ -1,0 +1,15 @@
+ja:
+  time:
+    formats:
+      default: "%Y年%m月%d日(%a) %H時%M分%S秒"
+      long: "%Y/%m/%d %H:%M"
+      short: "%m/%d %H:%M"
+      ym: "%Y年%m月"
+      ymd: "%Y/%m/%d"
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."

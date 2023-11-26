@@ -1,0 +1,15 @@
+<% breadcrumb :prefectures_show, @prefecture %>
+<% content_for(:title, t('.title', prefecture: @prefecture.name)) %>
+<div class="card-deck row d-flex justify-content-evenly">
+  <h1 class="p-5"><%= t('.title', prefecture: @prefecture.name) %></h1>
+  <% if @posts.present? %>
+    <%= render @posts %>
+    <div class="mt-5">
+      <%= paginate @posts, theme: 'bootstrap-5' %>
+    </div>
+  </div>
+<% else %>
+  <div>
+    <p class="text-center m-5"><%= "#{@prefecture.name}の投稿はありません" %></p>
+  </div>
+<% end %>

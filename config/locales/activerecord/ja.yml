@@ -1,0 +1,59 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      post: "投稿"
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        x_id: "X"
+        gender: "性別"
+        profile: "プロフィール"
+        birthday: "誕生日"
+        prefecture_id: "出身地"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+      post:
+        music_name: "曲名"
+        memory: "思い出"
+        age_group: "曲を聞いた年代"
+        prefecture_id: "曲を聞いた地域"
+      embed:
+        embed_type: "動画タイプ"
+        identifer: "動画のURL"
+      comment:
+        body: "コメント"
+  attributes:
+    created_at: "作成日"
+    updated_at: "更新日"
+  enums:
+    user:
+      gender:
+        other: "その他"
+        male: "男性"
+        female: "女性"
+    post:
+      age_group:
+        childhood: "幼少期"
+        elementary: "小学生"
+        middle: "中学時代"
+        high: "高校時代"
+        early_20s: "大学時代~20代前半"
+        late_20s: "25~29歳"
+        early_30s: "30~34歳"
+        late_30s: "35~39"
+        early_40s: "40~44歳"
+        late_40s: "45~49歳"
+        early_50s: "50~54歳"
+        late_50s: "55~59歳"
+        early_60s: "60~64歳"
+        late_60s: "65~69歳"
+        early_70s: "70~74歳"
+        late_70s: "75~79歳"
+    embed:
+      embed_type:
+        youtube: "YouTube"
+        apple_music: "Apple Music"
+        spotify: "Spotify"
+

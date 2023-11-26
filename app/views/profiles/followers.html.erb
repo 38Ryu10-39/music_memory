@@ -1,0 +1,19 @@
+<% breadcrumb :profiles_followers %>
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="row">
+    <h1><%= t('.title') %></h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><%= User.human_attribute_name(:name) %></th>
+          <td scope="col"><%= User.human_attribute_name(:x_id) %></td>
+          <td scope="col"><%= User.human_attribute_name(:profile) %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'follow_user', collection: @users %>
+      </tbody>
+    </table>
+  </div>
+</div>

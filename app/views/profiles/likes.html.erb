@@ -1,0 +1,17 @@
+<% breadcrumb :profiles_likes %>
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="row">
+    <div class="card-deck row d-flex justify-content-evenly">
+      <h1 class="mt-5 mb-5"><%= t('.title') %></h1>
+      <% if @like_posts.present? %>
+        <%= render partial: 'post', collection: @like_posts %>
+      <% else %>
+        <div class="text-center m-5"><%= t('defaults.messages.no_posts') %></div>
+      <% end %>
+    </div>
+    <div class="mt-5">
+      <%= paginate @like_posts, theme: 'bootstrap-5' %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<table class="table">
+  <% if @comments.present? %>
+    <%= render @comments %>
+  <% else %>
+    <p><%= t('posts.show.no_comment') %></p>
+  <% end %>
+</table>
