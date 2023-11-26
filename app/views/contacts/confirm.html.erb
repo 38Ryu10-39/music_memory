@@ -1,0 +1,51 @@
+<div class="container p-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h1>お問合せ内容確認</h1>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="text-right" style="width: 30%;">お名前</td>
+            <td><%= @contact.name %></td>
+          </tr>
+          <tr>
+            <td class="text-right mt-3" style="width: 30%;">メールアドレス</td>
+            <td><%= @contact.email %></td>
+          </tr>
+          <tr>
+            <td class="text-right mt-3" style="width: 30%;">件名</td>
+            <td><%= @contact.subject %></td>
+          </tr>
+          <tr>
+            <td class="text-right mt-3">メッセージ</td>
+            <td style="white-space: pre-wrap;"><%= @contact.message %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex">
+        <div class="mr-3">
+          <%= form_with model: @contact do |f| %>
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :email %>
+            <%= f.hidden_field :subject %>
+            <%= f.hidden_field :message %>
+            <div><%= f.submit '送信', class: "btn btn-success" %></div>
+          <% end %>
+        </div>
+
+        <div>
+          <%= form_with model: @contact, url: back_contacts_path do |f| %>
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :email %>
+            <%= f.hidden_field :subject %>
+            <%= f.hidden_field :message %>
+            <div><%= f.submit '入力画面に戻る', class: "btn btn-info" %></div>
+          <% end %>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

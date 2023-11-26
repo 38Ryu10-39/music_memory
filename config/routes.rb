@@ -28,4 +28,12 @@ Rails.application.routes.draw do
       delete :delete_read
     end
   end
+  resources :contacts, only: [:new, :create] do
+    collection do
+      post 'confirm'
+      post 'back'
+      get 'done'
+    end
+  end
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
