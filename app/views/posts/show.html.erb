@@ -1,7 +1,7 @@
 <% breadcrumb :posts_show, @post %>
 <% content_for(:title, "#{Post.human_attribute_name(:music_name)}:#{@post.music_name}") %>
 <div class="col-8 offset-2 position-relative">
-  <h1 class="pb-4 pt-4"><%= t('.title') %></h1>
+  <h1 class="pb-4 pt-4 text-center"><%= @post.music_name %></h1>
   <div class="text-center">
     <% if !@post.embed.embed_type.blank? && !@post.embed.identifer.blank? %>
       <% if @post.embed.youtube? %>
