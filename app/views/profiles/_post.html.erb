@@ -1,0 +1,20 @@
+<div class="card content-card border-left col-sm-12 col-md-5 position-relative m-1">
+  <div class="m-2 text-center">
+    <%= link_to post.music_name, post_path(post), class: "fs-3" %>
+  </div>
+  <div class="card-body">
+    <div>
+      <%= post.user.name %>
+    </div>
+    <div>
+      <%= post.age_group_i18n %>
+    </div>
+    <div>
+      <%= post.memory %>
+    </div>
+    <div>
+      <%= "#{post.prefecture.name}" if post.prefecture.present? %>
+    </div>
+  </div>
+  <%= render 'posts/crud_menu', post: post %>
+</div>

@@ -1,0 +1,4 @@
+$("#js-comment-update-error-<%= @comment.id %>").empty();
+$("#js-comment-create-error").empty();
+$("#js-comment-update-error-<%= @comment.id %>").html("<%= j(render 'shared/error_messages', object: @comment) %>");
+$("#js-comment-update-body-<%= @comment.id %>").val("<%= current_user.comments.find(@comment.id).body %>");

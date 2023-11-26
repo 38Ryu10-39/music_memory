@@ -1,0 +1,16 @@
+<% if !current_user.mine?(post) && current_user.like?(post) %>
+  <%= link_to post_like_path(post_id: post.id), class: 'mt-5 fs-3', method: :post, remote: true do %>
+    <i class="fa-solid fa-heart like-red"></i>
+    <%= "#{post.likes.count}いいね" %>
+  <% end %>
+<% elsif !current_user.mine?(post) && !current_user.like?(post) %>
+  <%= link_to post_like_path(post_id: post.id), class: 'mt-5 fs-3', method: :post, remote: true do %>
+    <i class="fa-regular fa-heart like-gray"></i>
+    <%= "#{post.likes.count}いいね" %>
+  <% end %>
+<% elsif current_user.mine?(post) %>
+  <div class="fs-4 mb-2">
+    <i class="fa-solid fa-heart like-red"></i>
+    <%= "#{post.likes.count}いいね" %>
+  </div>
+<% end %>

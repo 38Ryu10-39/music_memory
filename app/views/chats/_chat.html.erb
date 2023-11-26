@@ -1,0 +1,9 @@
+<div class="card m-2 p-2 col-6 offset-col-3">
+  <div style="width: 60px" class="d-flex">
+    <%= image_tag chat.user.avatar_url, size: '20x20', class: 'rounded-circle' %>
+    <%= chat.user.name %>
+  </div>
+  <div>
+    <%= chat.message %>
+  </div>
+</div>

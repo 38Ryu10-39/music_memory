@@ -1,0 +1,16 @@
+<% unless current_user.id == user.id %>
+  <% if current_user.following?(user) %>
+    <%= link_to t('relationships.unfollow'), user_relationships_path(user_id: user), method: :post, remote: true, class: 'btn btn-secondary' %>
+  <% else %>
+    <%= link_to t('relationships.follow'), user_relationships_path(user_id: user), method: :post, remote: true, class: 'btn btn-orange' %>
+  <% end %>
+<% end %>
+<div>
+  <% if current_page?(profile_path) || user.id == current_user.id %>
+    <p><%= link_to t('defaults.following_number'), follows_profile_path %>: <%= user.following_users.count %></p>
+    <p><%= link_to t('defaults.follower_number'), followers_profile_path %>: <%= user.follower_users.count %></p>
+  <% else %>
+    <%= t('defaults.following_number') %>: <%= user.following_users.count %>
+    <%= t('defaults.follower_number') %>: <%= user.follower_users.count %>
+  <% end %>
+</div>

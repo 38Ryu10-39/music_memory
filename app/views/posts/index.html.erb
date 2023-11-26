@@ -1,0 +1,21 @@
+<% breadcrumb :posts %>
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="row justify-content-center">
+    <h1 class="mt-5 mb-5 text-center"><%= t('.title') %></h1>
+    <div id="jmap" class="col-10 offset-1"></div>
+    <div class="card-deck row d-flex justify-content-evenly">
+      <% if @posts.present? %>
+        <%= render @posts %>
+      <% else %>
+        <div class="text-center m-5"><%= t('defaults.messages.no_posts') %></div>
+      <% end %>
+    </div>
+    <div class="mt-5">
+      <%= paginate @posts, theme: 'bootstrap-5' %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<%= javascript_import_module_tag "posts/index" %>
+<%= javascript_import_module_tag 'jmap' %>

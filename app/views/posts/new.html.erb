@@ -1,0 +1,9 @@
+<% breadcrumb :posts_new %>
+<% content_for(:title, t('.title')) %>
+<div class="form-signin m-auto col-7 offset-2">
+  <h1 class="text-center mb-4"><%= t('.title') %></h1>  
+  <%= render 'form', post: @post, embed: @embed, submit: t('posts.new.submit') %>
+  <div class="text-center">
+    <%= link_to t('defaults.back_button'), posts_path %>
+  </div>
+</div>
