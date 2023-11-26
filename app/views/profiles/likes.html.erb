@@ -2,12 +2,12 @@
 <% content_for(:title, t('.title')) %>
 <div class="container">
   <div class="row">
-    <div class="col-10 offset-1">
-      <h1 class="mt-4 mb-4"><%= t('.title') %></h1>
+    <div class="card-deck row d-flex justify-content-evenly">
+      <h1 class="mt-5 mb-5"><%= t('.title') %></h1>
       <% if @like_posts.present? %>
         <%= render partial: 'post', collection: @like_posts %>
       <% else %>
-        <div><%= t('defaults.messages.no_posts') %></div>
+        <div class="text-center m-5"><%= t('defaults.messages.no_posts') %></div>
       <% end %>
     </div>
     <div class="mt-5">

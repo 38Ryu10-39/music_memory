@@ -1,8 +1,8 @@
 <% breadcrumb :profiles %>
 <% content_for(:title, t('.title')) %>
 <div class="container">
-  <div class="row d-flex justify-content-evenly">
-    <div class="card p-3 col-12 col-md-10 text-center col-lg-4">
+  <div class="row d-flex justify-content-evenly pb-4">
+    <div class="card p-3 col-12 col-md-10 text-center col-lg-4 mt-4">
       <div>
         <%= image_tag @user.avatar_url, size: '150x150', class: 'rounded-circle mr15 d-block mb-5 mx-auto' %>
       </div>
@@ -35,7 +35,7 @@
         <%= link_to t('profiles.edit.title'), edit_profile_path, class:"btn btn-orange" %>
       </div>
     </div>
-    <div class="mt-5 col-12 text-center col-lg-6 offset-lg-1 bg-orange text-white">
+    <div class="mt-4 col-12 text-center col-lg-6 offset-lg-1 bg-orange text-white">
       <div>
         <%= link_to t('.like_posts'), likes_profile_path, class:"btn btn-orange container-fluid" %>
         <div class="card mb-5">
