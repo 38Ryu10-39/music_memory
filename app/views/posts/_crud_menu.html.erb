@@ -2,7 +2,7 @@
   <li class="list-inline-item" id="search-post-<%= post.id %>">
     <% unless current_page?(post_path(post)) %>
       <%= link_to post_path(post), id: "show-post-#{post.id}" do %>
-        <i class="fas fa-search"></i> 
+        <i class="fa-solid fa-circle-info"></i>
       <% end %>
     <% end %>
   </li>

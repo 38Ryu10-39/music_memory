@@ -31,6 +31,10 @@ h1, div, p, small, .title-color, .orange-color {
   color: #ea5504;
 }
 
+.orange-color {
+  color: #ea5504;
+}
+
 table tr {
   color: #ea5504;
 }
@@ -106,4 +110,25 @@ table tr {
 footer {
   height: 120px;
   background-color: #ea5504;
+}
+
+input{
+  border-color: white;
+  border-radius: 8px;
+  &::placeholder {
+  color: #ea5504;
+  opacity: .6;
+  }
+}
+
+label{
+  color: #ea5504;
+  font-size: 20px;
+}
+
+input.form-control, textarea.form-control {
+  &::placeholder {
+    color: #ea5504;
+    opacity: .6;
+  }
 }
