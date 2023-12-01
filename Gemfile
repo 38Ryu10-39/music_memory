@@ -63,6 +63,7 @@ gem 'active_hash'
 gem 'gretel'
 gem 'high_voltage'
 gem "dotenv-rails"
+gem 'redis'
 
 
 group :development, :test do
