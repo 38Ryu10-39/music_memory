@@ -132,3 +132,19 @@ input.form-control, textarea.form-control {
     opacity: .6;
   }
 }
+
+#notification-icon {
+  position: relative;
+}
+
+.notification-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red; /* 任意の色 */
+  color: white;
+  padding: 5px 8px;
+  font-size: 12px;
+  border-radius: 50%;
+  line-height: 1;
+}

@@ -28,6 +28,15 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   enum gender: {other: 0 , male: 1, female: 2}
 
+  scope :unread_notifications_count, ->(user_id) do
+    joins(:received_notifications).where(notifications: { receiver_id: user_id, is_read: false }).count
+  end
+
+  def unread_notifications_count_present?
+    unread_count = User.unread_notifications_count(self.id)
+    unread_count.positive? ? true : false
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     ['name']
   end
