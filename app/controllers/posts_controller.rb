@@ -60,6 +60,13 @@ class PostsController < ApplicationController
     redirect_to posts_path, success: t('defaults.messages.delete_post')
   end
 
+  def search
+    @posts = Post.where("music_name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def post_params
