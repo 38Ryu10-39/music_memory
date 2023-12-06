@@ -9,8 +9,12 @@
       
       <div class="nav-link">
         <%= search_form_for @q, url: posts_path, class: "col-lg-auto mt-1 mb-lg-0 me-lg-3 text-bottom" do |f| %>
-          <%= f.search_field :music_name_or_memory_or_user_name_cont, placeholder: "Search..." %>
-          <%= f.submit t('defaults.search'), class: "btn-search" %>
+          <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search" role="combobox">
+            <%= f.search_field :music_name_or_user_name_cont, data: { autocomplete_target: 'input' }, placeholder: "検索..." %>
+            <%= f.hidden_field :music_name, data: { autocomplete_target: 'hidden' } %>
+            <ul class="list-group" data-autocomplete-target="results"></ul>
+            <%= f.submit t('defaults.search'), class: "btn-search" %>
+          </div>
         <% end %>
       </div>
 
