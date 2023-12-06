@@ -1,0 +1,11 @@
+<tr>
+  <td><%= link_to simple_post.music_name, post_path(simple_post.id) %></td>
+  <% if simple_post.user.name == current_user.name %>
+    <td><%= truncate simple_post.memory %></td>
+  <% else %>
+    <td><%= link_to simple_post.user.name, user_path(simple_post.user.id) %></td>
+  <% end %>
+  <% if simple_post.user.name == current_user.name %>
+    <td><%= simple_post.age_group_i18n %></td>
+  <% end %>
+</tr>
