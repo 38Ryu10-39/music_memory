@@ -46,12 +46,7 @@
                 <th><%= t('defaults.contributor') %></th>
               </tr>
             </thead>
-            <% @like_posts.each do |like_post| %>
-              <tr>
-                <td><%= like_post.music_name %></td>
-                <td><%= like_post.user.name %></td>
-              </tr>
-            <% end %>
+            <%= render partial: 'simple_post', collection: @like_posts %>
           </table>
         </div>
       </div>
@@ -64,13 +59,7 @@
               <th><%= Post.human_attribute_name(:memory) %></th>
               <th><%= t('defaults.age_group') %></th>
             </thead>
-            <% @my_posts.each do |my_post| %>
-              <tr>
-                <td><%= my_post.music_name %></td>
-                <td><%= truncate my_post.memory %></td>
-                <td><%= my_post.age_group_i18n %></td>
-              </tr>
-            <% end %>
+            <%= render partial: 'simple_post', collection: @my_posts %>
           </table>
         </div>
       </div>
