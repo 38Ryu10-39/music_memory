@@ -32,12 +32,16 @@
       <%= f.text_field :x_id, class: "form-control", placeholder: "(例)@user_name", value: current_user.x_id %>
     </div>
     <div class="mb-3">
-      <div>
-        <%= image_tag current_user.avatar_url, size: '160x160', class: 'rounded-circle mb-3 mx-auto d-block' %>
+      <div class="form-group mt-3 mb-3" id="previews">
+        <% if current_user.avatar.present? %>
+          <%= image_tag current_user.avatar_url, size: '160x160', class: 'preview rounded-circle mb-3 mx-auto d-block' %>
+        <% else %>
+          <%= image_tag 'default_image.jpg', size: '160x160', class: 'preview rounded-circle mb-3 mx-auto d-block' %>
+        <% end %>
       </div>
       <%= f.label :avatar %><br />
       <%= f.file_field :avatar, class: "form-control" %>
-      <%= f.hidden_field :board_image_cache %>
+      <%= f.hidden_field :avatar_cache %>
     </div>
     <div class="mb-3 text-center mt-4">
       <%= f.submit t('.update'), class:"btn btn-orange w-50" %>
@@ -47,3 +51,4 @@
     <%= link_to t('defaults.back_button'), profile_path %>
   </div>
 </div>
+<%= javascript_import_module_tag "preview" %>
