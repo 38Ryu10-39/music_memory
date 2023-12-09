@@ -1,17 +1,15 @@
 class RoomsController < ApplicationController
   def index
-    @user = current_user
-    @my_user_rooms = current_user.user_rooms.includes(:room)
-    my_room_ids = []
-    @my_user_rooms.each do |mu|
-      my_room_ids << mu.room.id
+    my_user_rooms = current_user.user_rooms.includes(:room).map do |my_user_room|
+      my_user_room.room.id
     end
-    @another_user_rooms = UserRoom.includes(:user, :room).where(room_id: my_room_ids).where.not(user_id: @user.id).order(created_at: :desc)
+    @another_user_rooms = UserRoom.where(room_id: my_user_rooms).where.not(user_id: current_user.id).includes(:user, :room).order(created_at: :desc)
   end
 
   def show
     @room = Room.find(params[:id])
-    if UserRoom.where(user_id: current_user.id, room_id: @room.id).present?
+    user_room = UserRoom.where(user_id: current_user.id, room_id: @room.id)
+    if user_room.present?
       @chats = @room.chats.includes(:user).order(created_at: :desc)
       @chat = Chat.new
       @user_rooms = @room.user_rooms.includes(:user)

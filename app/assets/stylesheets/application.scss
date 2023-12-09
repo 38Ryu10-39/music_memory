@@ -148,3 +148,15 @@ input.form-control, textarea.form-control {
   border-radius: 50%;
   line-height: 1;
 }
+
+.chat-message {
+  max-width: 70%;
+}
+
+.own-message {
+  margin-left: auto;
+}
+
+.other-message {
+  margin-right: auto;
+}
