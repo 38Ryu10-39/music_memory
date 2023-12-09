@@ -3,23 +3,24 @@
 <div class="container">
   <div class="row">
     <div>
-      <% @user_rooms.each do |u| %>
-        <% current_user == u.user ? @class = "current_user" : @class = ""  %>
-          <% if u.user != current_user %>
-            <h1 class="text-left <%= @class %>" id="<%= @class %>"><%= link_to "#{u.user.name}", user_path(u.user_id) %></h1>
-          <% else %>
-            <h1 class="text-left <%= @class %>" id="<%= @class %>"></h1>
+      <% @user_rooms.each do |user_room| %>
+        <div class="chat-username my-3">
+          <% if user_room.user != current_user %>
+            <%= link_to "#{user_room.user.name}さん", user_path(user_room.user_id), class: "fs-2" %>
           <% end %>
+        </div>
       <% end %>
-      <form>
+
+      <form id="chat-form">
         <input type="text" name="message" id="new_message">
         <input type="hidden" name="room_id" value=<%= @room.id %> class="hidden_room_id">
         <input type="hidden" name="user_id" value=<%= current_user.id %> class="hidden_user_id">
         <input type="button" value=<%= t('.chat_submit') %> class="chat_btn">
       </form>
-      <div id="messages">
+
+      <div id="messages" class="d-flex flex-column">
         <% if @chats.present? %>
-          <%= render @chats %>
+          <%= render partial: 'chats/chat', collection: @chats %>
         <% else %>
           <p><%= t('.no_chat') %></p>
         <% end %>
