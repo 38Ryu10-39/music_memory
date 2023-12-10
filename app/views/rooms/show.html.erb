@@ -2,7 +2,7 @@
 <% content_for(:title, t('.title')) %>
 <div class="container">
   <div class="row">
-    <div>
+    <div class="col-xs-12 col-md-12 col-lg-8 offset-lg-2 text-center mb-5">
       <% @user_rooms.each do |user_room| %>
         <div class="chat-username my-3">
           <% if user_room.user != current_user %>
@@ -12,19 +12,18 @@
       <% end %>
 
       <form id="chat-form">
-        <input type="text" name="message" id="new_message">
+        <input type="text" name="message" id="new_message" style="width: 70%">
         <input type="hidden" name="room_id" value=<%= @room.id %> class="hidden_room_id">
         <input type="hidden" name="user_id" value=<%= current_user.id %> class="hidden_user_id">
-        <input type="button" value=<%= t('.chat_submit') %> class="chat_btn">
+        <input type="button" value=<%= t('.chat_submit') %> class="chat_btn btn btn-orange">
       </form>
-
-      <div id="messages" class="d-flex flex-column">
-        <% if @chats.present? %>
-          <%= render partial: 'chats/chat', collection: @chats %>
-        <% else %>
-          <p><%= t('.no_chat') %></p>
-        <% end %>
-      </div>
+    </div>
+    <div id="messages" class="d-flex flex-column col-xs-12 col-md-12 col-lg-8 offset-lg-2 card p-3">
+      <% if @chats.present? %>
+        <%= render partial: 'chats/chat', collection: @chats %>
+      <% else %>
+        <p><%= t('.no_chat') %></p>
+      <% end %>
     </div>
   </div>
 </div>

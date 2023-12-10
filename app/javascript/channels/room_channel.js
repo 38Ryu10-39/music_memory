@@ -14,7 +14,6 @@ const appRoom = consumer.subscriptions.create("RoomChannel", {
   received(data) {
     const messages = document.querySelector('#messages');
     messages.insertAdjacentHTML('afterbegin', data['chat']);
-    adjustMessageAlignment(data);
   },
 
   chat(data) {
@@ -33,22 +32,3 @@ document.addEventListener("DOMContentLoaded", function() {
     e.preventDefault();
   });
 });
-
-function adjustMessageAlignment(data) {
-  const messagesContainer = document.querySelector('#messages');
-  const lastMessage = messagesContainer.firstElementChild;
-
-  if (lastMessage) {
-    const isOwnMessage = data.current_user_id === parseInt(lastMessage.getAttribute('data-user-id'));
-    updateMessageAlignment(lastMessage, isOwnMessage);
-  }
-}
-
-function updateMessageAlignment(messageElement, isOwnMessage) {
-  clearMessageClasses(messageElement);
-  messageElement.classList.add(isOwnMessage ? 'own-message' : 'other-message');
-}
-
-function clearMessageClasses(messageElement) {
-  messageElement.classList.remove('own-message', 'other-message');
-}

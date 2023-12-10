@@ -1,9 +1,10 @@
-<div class="card my-2 p-3 col-6 offset-col-3 chat-message <%= chat.user == current_user ? 'own-message' : 'other-message' %>" data-user-id="<%= chat.user_id %>">
-  <div style="width: 60px" class="d-flex align-items-center">
-    <%= image_tag chat.user.avatar_url, size: '30x30', class: 'rounded-circle mr-2' %>
-    <span style="font-size: 18px;"><%= chat.user.name %></span>
+<div class="chat-message mx-3 my-1">
+  <div class="chat-avatar">
+    <%= image_tag chat.user.avatar_url, size: '30x30', class: 'rounded-circle' %>
   </div>
-  <div>
-    <%= chat.message %>
+  <div class="chat-bubble p-3">
+    <div class="triangle"></div>
+    <h5 style="font-size: 1.5rem; margin-bottom: 5px;"> <%= chat.user.name %> </h5>
+    <p class="mb-0"> <%= chat.message %> </p>
   </div>
 </div>
