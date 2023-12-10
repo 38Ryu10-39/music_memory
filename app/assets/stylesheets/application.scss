@@ -150,13 +150,37 @@ input.form-control, textarea.form-control {
 }
 
 .chat-message {
-  max-width: 70%;
+  position: relative;
+  margin-bottom: 20px;
 }
 
-.own-message {
-  margin-left: auto;
+.chat-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  margin-right: 10px;
 }
 
-.other-message {
-  margin-right: auto;
+.chat-bubble {
+  background-color: #ff7b0019;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 50px;
+  position: relative;
+  word-break: break-word;
+  display: inline-block;
+}
+
+.triangle {
+  position: absolute;
+  top: 10px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #ff7b0019;
 }
