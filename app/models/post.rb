@@ -32,7 +32,7 @@ class Post < ApplicationRecord
                   }
   
   def self.ransackable_attributes(auth_object = nil)
-    ["music_name"]
+    ["music_name", "prefecture_id", "age_group"]
   end
   
   def self.ransackable_associations(auth_object = nil)

@@ -3,8 +3,9 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]).per(8)
-    @counts = Prefecture.all.map { |pref| Post.where(prefecture_id: pref.id).count }
+    @all_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc)
+    @posts = @all_posts.page(params[:page]).per(8)
+    @counts = Prefecture.all.map { |pref| @posts.where(prefecture_id: pref.id).count }
   end
 
   def new
@@ -61,10 +62,14 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.where("music_name like ?", "%#{params[:q]}%")
-    respond_to do |format|
-      format.js
-    end
+    @all_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc)
+    @posts = @all_posts.page(params[:page]).per(8)
+    @counts = Prefecture.all.map { |pref| @posts.where(prefecture_id: pref.id).count }
+    render :index
+  end
+
+  def memory_index
+    @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(8)
   end
 
   private

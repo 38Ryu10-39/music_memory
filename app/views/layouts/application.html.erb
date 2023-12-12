@@ -14,10 +14,10 @@
 
   <body class="bg-layout">
     <%= render 'shared/header' %>
+    <%= render 'shared/flash_message' %>
     <div class="d-flex flex-row-reverse p-2">
       <%= breadcrumbs separator: " &rsaquo; " %>
     </div>
-    <%= render 'shared/flash_message' %>
     <%= yield %>
     <%= render 'shared/footer' %>
   </body>

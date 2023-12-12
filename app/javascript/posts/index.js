@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         heatmapColors: ["#FFE", "#FEDCBD", "#FCBB76", "#FCAF17", "#F36C21", "#F15A22"],
         backgroundColor: '#ea55040a',
         onSelect: function(e, data) {
-          window.location.href = `prefectures/${data.option.code}`;
+          window.location.href = `/prefectures/${data.option.code}`;
         },
         areas: [
           {code: 1,name: "北海道", number: document.getElementById('prefecture_1').value},
