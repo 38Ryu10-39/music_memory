@@ -17,6 +17,11 @@ crumb :posts_edit do |post|
   parent :posts_show, post
 end
 
+crumb :posts_memory do
+  link "思い出一覧", memory_index_posts_path
+  parent :posts
+end
+
 crumb :user_sessions_new do
   link "ログイン", login_path
   parent :posts

@@ -1,0 +1,8 @@
+<div class="card content-card border-left col-sm-12 col-md-5 position-relative m-1">
+  <div class="card-body">
+    <div>
+      <%= link_to memory_post.memory, post_path(memory_post) %>
+    </div>
+  </div>
+  <%= render 'posts/crud_menu', post: memory_post %>
+</div>

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_q
   
   def set_q
-    @q = Post.ransack(params[:q].try(:merge, m: 'or'))
+    @q = Post.ransack(params[:q])
   end
 
   private
