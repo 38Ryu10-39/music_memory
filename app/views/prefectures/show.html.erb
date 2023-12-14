@@ -3,7 +3,14 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="card-deck row d-flex justify-content-evenly m-1">
-      <h1 class="p-5"><%= t('.title', prefecture: @prefecture.name) %></h1>
+      <h1 class="p-5 text-center"><%= t('.title', prefecture: @prefecture.name) %></h1>
+      <div class="col-10">
+        <% if params[:q] %>
+          <h2>件数: <%= @all_posts.count %>件</h2>
+        <% else %>
+          <h2>投稿件数: <%= @all_posts.count %>件</h2>
+        <% end %>
+      </div>
       <% if @posts.present? %>
         <%= render partial: 'post', collection: @posts %>
         <div class="mt-5">
