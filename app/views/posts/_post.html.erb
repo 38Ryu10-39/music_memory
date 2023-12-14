@@ -6,11 +6,20 @@
     <div>
       <%= "#{t('defaults.contributor')}: " %><%= link_to post.user.name, user_path(post.user) %>
     </div>
-    <div>
-      <%= post.age_group_i18n %>
-    </div>
-    <div>
-      <%= "#{post.prefecture.name}" if post.prefecture.present? %>
+    <div class="d-flex mt-2">
+      <% if post.age_group.present? %>
+        <%= search_form_for @q, url: search_posts_path, html: { class: 'me-2' } do |f| %>
+          <%= f.hidden_field :age_group_eq, value: post.age_group_before_type_cast %>
+          <%= f.submit post.age_group_i18n, class: 'btn btn-orange btn-sm rounded-pill' %>
+        <% end %>
+      <% end %>
+      
+      <% if post.prefecture.present? %>
+        <%= search_form_for @q, url: search_posts_path, html: { class: 'me-2' } do |f| %>
+          <%= f.hidden_field :prefecture_id_eq, value: post.prefecture_id %>
+          <%= f.submit post.prefecture.name, class: 'btn btn-orange btn-sm rounded-pill' %>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <%= render 'posts/crud_menu', post: post %>

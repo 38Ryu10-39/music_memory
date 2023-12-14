@@ -68,6 +68,20 @@ class PostsController < ApplicationController
     render :index
   end
 
+  def age_search
+    @all_posts = Post.where(age_group: params[:age_group]).includes(:user).order(created_at: :desc)
+    @posts = @all_posts.page(params[:page]).per(8)
+    @counts = Prefecture.all.map { |pref| @posts.where(prefecture_id: pref.id).count }
+    render :index
+  end
+
+  def prefecture_search
+    @all_posts = Post.where(prefecture_id: params[:prefecture_id]).includes(:user).order(created_at: :desc)
+    @posts = @all_posts.page(params[:page]).per(8)
+    @counts = Prefecture.all.map { |pref| @posts.where(prefecture_id: pref.id).count }
+    render :index
+  end
+
   def memory_index
     @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(8)
   end

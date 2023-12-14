@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", (event) => {
+  const currentUrl = window.location.href
+  const urlSplit = currentUrl.split('/')
+  const urlLast = urlSplit[urlSplit.length - 1]
+  const urlJudge = urlLast.includes('search')
   $(document).ready(function() {
     $('#jmap').jmap({
         width: '100%',
@@ -31,7 +35,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
         heatmapColors: ["#FFE", "#FEDCBD", "#FCBB76", "#FCAF17", "#F36C21", "#F15A22"],
         backgroundColor: '#ea55040a',
         onSelect: function(e, data) {
-          window.location.href = `/prefectures/${data.option.code}`;
+          if (urlJudge) {
+            window.location.href = `/prefectures/${data.option.code}/${urlSplit[urlSplit.length - 1]}`;
+          } else {
+            window.location.href = `/prefectures/${data.option.code}`;
+          }
         },
         areas: [
           {code: 1,name: "北海道", number: document.getElementById('prefecture_1').value},
