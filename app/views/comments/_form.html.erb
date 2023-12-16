@@ -4,9 +4,17 @@
       <div id="js-comment-create-error">
         <%= render 'shared/error_messages', object: f.object %>
       </div>
-      <%= f.label :body, t('posts.show.comments_count', number: comments.count) %>
-      <%= f.text_field :body, class: 'form-control mb-3', id: "js-comment-create-body", row: 4, placeholder: 'コメント' %>
-      <%= f.submit t('posts.show.comment_submit'), class: 'btn btn-orange' %>
+      <div class="form-group row">
+        <%= f.label :body, t('posts.show.comments_count', number: comments.count), class: 'col-form-label col-lg-3 text-lg-right' %>
+        <div>
+          <div class="input-group">
+            <%= f.text_field :body, class: 'form-control', id: "js-comment-create-body", row: 4, placeholder: 'コメント' %>
+            <div class="input-group-append">
+              <%= f.submit t('posts.show.comment_submit'), class: 'btn btn-orange' %>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

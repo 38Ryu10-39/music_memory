@@ -71,7 +71,7 @@ ja:
       submit: "投稿"
     show:
       title: "投稿詳細"
-      comment_submit: "コメントする"
+      comment_submit: "コメント"
       no_comment: "コメントはありません"
       comments_count: "%{number}件のコメント"
       not_logged_in_comment: "ログインしていないとコメントは見ることができません"

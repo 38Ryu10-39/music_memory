@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function(){
     previewImage.width = "160";
     previewImage.height = "160";
     
-    // 生成したHTMLの要素をブラウザに表示させる
     previewWrapper.appendChild(previewImage);
     previewList.appendChild(previewWrapper);
   });

@@ -135,18 +135,21 @@ input.form-control, textarea.form-control {
 
 #notification-icon {
   position: relative;
+  display: inline-block;
 }
 
 .notification-count {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -12px; /* Adjust as needed */
+  right: -12px; /* Adjust as needed */
   background-color: red; /* 任意の色 */
   color: white;
   padding: 5px 8px;
   font-size: 12px;
   border-radius: 50%;
   line-height: 1;
+  min-width: 18px; /* Adjust as needed */
+  text-align: center;
 }
 
 .chat-message {

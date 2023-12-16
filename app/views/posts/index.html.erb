@@ -13,8 +13,8 @@
     <% Prefecture.all.each do |i| %>
       <input type="hidden" id="prefecture_<%= i.id %>" value="<%= @counts["#{i.id - 1}".to_i] %>">
     <% end %>
-    <div id="jmap" class="col-lg-5 col-md-10 col-sm-10 offset-1"></div>
-    <div class="card-deck row d-flex justify-content-evenly col-lg-5 col-md-10 offset-md-1 col-sm-10 offset-sm-1">
+    <div id="jmap" class="col-lg-6 col-md-10 col-sm-10 offset-lg col-lg-5 col-md-10 mx-auto"></div>
+    <div class="card-deck row d-flex justify-content-evenly col-lg-5 col-md-10 col-sm-10 ">
       <% if @posts.present? %>
         <%= render @posts %>
       <% else %>

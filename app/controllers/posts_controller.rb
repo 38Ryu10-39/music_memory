@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: %i[index show]
+  skip_before_action :require_login, only: %i[index show search memory_index]
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
@@ -63,20 +63,6 @@ class PostsController < ApplicationController
 
   def search
     @all_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc)
-    @posts = @all_posts.page(params[:page]).per(8)
-    @counts = Prefecture.all.map { |pref| @posts.where(prefecture_id: pref.id).count }
-    render :index
-  end
-
-  def age_search
-    @all_posts = Post.where(age_group: params[:age_group]).includes(:user).order(created_at: :desc)
-    @posts = @all_posts.page(params[:page]).per(8)
-    @counts = Prefecture.all.map { |pref| @posts.where(prefecture_id: pref.id).count }
-    render :index
-  end
-
-  def prefecture_search
-    @all_posts = Post.where(prefecture_id: params[:prefecture_id]).includes(:user).order(created_at: :desc)
     @posts = @all_posts.page(params[:page]).per(8)
     @counts = Prefecture.all.map { |pref| @posts.where(prefecture_id: pref.id).count }
     render :index
