@@ -4,5 +4,7 @@
       <%= link_to memory_post.memory, post_path(memory_post) %>
     </div>
   </div>
-  <%= render 'posts/crud_menu', post: memory_post %>
+  <div class="position-absolute bottom-0 end-0">
+    <%= render 'posts/crud_menu', post: memory_post %>
+  </div>
 </div>

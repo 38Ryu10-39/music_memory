@@ -1,8 +1,8 @@
 <% breadcrumb :posts_show, @post %>
 <% content_for(:title, "#{Post.human_attribute_name(:music_name)}:#{@post.music_name}") %>
-<div class="col-8 offset-2 position-relative">
+<div class="col-10 offset-1 position-relative row">
   <h1 class="pb-4 pt-4 text-center"><%= @post.music_name %></h1>
-  <div class="text-center">
+  <div class="text-center col-lg-6">
     <% if !@post.embed.embed_type.blank? && !@post.embed.identifer.blank? %>
       <% if @post.embed.youtube? %>
         <%= content_tag 'iframe', nil, width: '100%', height: '350px', src: "https://www.youtube.com/embed/#{@post.embed.identifer}", frameborder: 0, allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", style: "max-width:600px;", allowfullscreen: "" %>
@@ -13,57 +13,68 @@
       <% end %>
     <% end %>
   </div>
-  <table class="table table-striped">
-    <tr>
-      <td><%= t('defaults.contributor') %></td>
-      <% if logged_in? && current_user.mine?(@post) %>
-        <td><%= @post.user.name %></td>
-      <% else %>
-        <td><%= link_to @post.user.name, user_path(@post.user) %></td>
-      <% end %>
-    </tr>
-    <tr>
-      <td><%= Post.human_attribute_name(:music_name) %></td>
-      <td><%= @post.music_name %></td>
-    </tr>
-    <tr>
-      <td><%= Post.human_attribute_name(:memory) %></td>
-      <td><%= @post.memory %></td>
-    </tr>
-    <% if @post.age_group.present? %>
-      <tr>
-        <td><%= Post.human_attribute_name(:age_group) %></td>
-        <td><%= @post.age_group_i18n %></td>
-      </tr>
-    <% end %>
-    <% if @post.prefecture.present? %>
-      <tr>
-        <td><%= Post.human_attribute_name(:prefecture_id) %></td>
-        <td><%= @post.prefecture.name %></td>
-      </tr>
-    <% end %>
-  </table>
-  <% if logged_in? %>
-    <div id="js-like-buttons-<%= @post.id %>">
-      <%= render 'likes/like', post: @post %>
-    </div>
+  <% if !@post.embed.embed_type.blank? && !@post.embed.identifer.blank? %>
+    <div class="col-md-10 offset-md-1 col-lg-5 position-relative">
   <% else %>
-    <div class="fs-4 mb-2">
-      <i class="fa-solid fa-heart like-red"></i>
-      <%= "#{@post.likes.count}いいね" %>
-    </div>
+    <div class="col-10 offset-1 position-relative">
   <% end %>
-  <%= render 'crud_menu', post: @post %>
+      <table class="table table-striped">
+        <tr>
+          <% if logged_in? && current_user.mine?(@post) %>
+            <td class="text-center"><%= @post.user.name %></td>
+          <% else %>
+            <td class="text-center"><%= link_to @post.user.name, user_path(@post.user) %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td class="text-center"><%= @post.music_name %></td>
+        </tr>
+        <tr>
+          <td class="text-center"><%= @post.memory %></td>
+        </tr>
+        <% if @post.age_group.present? %>
+          <tr>
+            <td class="text-center"><%= @post.age_group_i18n %></td>
+          </tr>
+        <% end %>
+        <% if @post.prefecture.present? %>
+          <tr>
+            <td class="text-center"><%= @post.prefecture.name %></td>
+          </tr>
+        <% end %>
+      </table>
+      <% if logged_in? %>
+        <div id="js-like-buttons-<%= @post.id %>" class="position-absolute bottom-3 start-0">
+          <%= render 'likes/like', post: @post %>
+        </div>
+        <div class="position-absolute bottom-2 end-0">
+          <%= render 'crud_menu', post: @post %>
+        </div>
+      <% else %>
+        <div class="fs-4 mb-2">
+          <i class="fa-solid fa-heart like-red"></i>
+          <%= "#{@post.likes.count}いいね" %>
+        </div>
+      <% end %>
+    </div>
 </div>
-<div class="col-8 offset-2">
+
+<div class="col-8 offset-2 my-5">
   <% if logged_in? %>
     <%= render 'comments/form', { post: @post, comment: @comment, comments: @comments } %>
     <div class="row">
-      <div class="col-lg-8 offset-lg-2" id="js-comments">
-        <%= render 'comments/comments', { comments: @comments } %>
+      <div class="col-lg-8 offset-lg-2">
+        <button class="btn btn-orange" type="button" data-bs-toggle="collapse" data-bs-target="#js-comments" aria-expanded="false" aria-controls="js-comments" id="commentToggleBtn">
+          コメントを表示
+        </button>
+        <div class="collapse" id="js-comments">
+          <%= render 'comments/comments', { comments: @comments } %>
+        </div>
       </div>
     </div>
   <% else %>
     <div><%= t('.not_logged_in_comment') %></div>
   <% end %>
 </div>
+
+<%= javascript_import_module_tag "posts/show" %>

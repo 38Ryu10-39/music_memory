@@ -13,8 +13,6 @@ Rails.application.routes.draw do
     resource :like, only: %i[create]
     get :search, on: :collection
     get :memory_index, on: :collection
-    get :age_search, on: :collection
-    get :prefecture_search, on: :collection
   end
   resources :prefectures, only: %i[show] do
     get :search

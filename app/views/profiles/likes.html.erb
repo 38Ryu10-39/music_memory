@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="card-deck row d-flex justify-content-evenly">
-      <h1 class="mt-5 mb-5"><%= t('.title') %></h1>
+      <h1 class="text-center my-5"><%= t('.title') %></h1>
       <% if @like_posts.present? %>
         <%= render partial: 'post', collection: @like_posts %>
       <% else %>

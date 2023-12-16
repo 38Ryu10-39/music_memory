@@ -13,5 +13,7 @@
       <%= "#{post.prefecture.name}" if post.prefecture.present? %>
     </div>
   </div>
-  <%= render 'posts/crud_menu', post: post %>
+  <div class="position-absolute bottom-0 end-0">
+    <%= render 'posts/crud_menu', post: post %>
+  </div>
 </div>
