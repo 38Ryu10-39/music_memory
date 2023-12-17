@@ -35,6 +35,7 @@ ja:
         female: "女性"
     post:
       age_group:
+        unknown: "年代不明"
         childhood: "幼少期"
         elementary: "小学生"
         middle: "中学時代"
@@ -42,7 +43,7 @@ ja:
         early_20s: "大学~20代前半"
         late_20s: "25~29歳"
         early_30s: "30~34歳"
-        late_30s: "35~39"
+        late_30s: "35~39歳"
         early_40s: "40~44歳"
         late_40s: "45~49歳"
         early_50s: "50~54歳"
@@ -56,4 +57,3 @@ ja:
         youtube: "YouTube"
         apple_music: "Apple Music"
         spotify: "Spotify"
-

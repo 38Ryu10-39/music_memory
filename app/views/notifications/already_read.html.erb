@@ -1,18 +1,21 @@
 <% breadcrumb :notifications_already_read %>
 <% content_for(:title, t('.title')) %>
-<div class="row">
-  <h1 class="p-2 col-4 lh-base"><%= t('.title') %></h1>
-  <button class="col-3 offset-2 btn btn-light">
-    <%= link_to t('.new_notification_index'), notifications_path %>
-  </button>
-  <button class="col-3 btn btn-light">
-    <%= link_to t('.destroy_already_read'), delete_read_notifications_path, method: :delete %>
-  </button>
-</div>
-<div>
-  <% if @notifications.present? %>
-    <%= render @notifications %>
-  <% else %>
-    <p><%= t('defaults.messages.no_notification') %></p>
-  <% end %>
+<div class="container mt-4">
+  <h1 class="p-2 col-12 lh-base"><%= t('.title') %></h1>
+  <div class="row mb-4 justify-content-start">
+    <div class="col-auto">
+      <%= link_to t('.new_notification_index'), notifications_path, class: "btn btn-orange text-white btn-block" %>
+    </div>
+    <div class="col-auto">
+      <%= link_to t('.destroy_already_read'), delete_read_notifications_path, method: :delete, class: "btn btn-orange text-white btn-block" %>
+    </div>
+  </div>
+
+  <div>
+    <% if @notifications.present? %>
+      <%= render @notifications %>
+    <% else %>
+      <p><%= t('defaults.messages.no_notification') %></p>
+    <% end %>
+  </div>
 </div>

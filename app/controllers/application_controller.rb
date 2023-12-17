@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def modal_notification
     if logged_in?
-      @modal_notifications = current_user.received_notifications.includes(:notifiable, :sender).where(is_read: false).order(created_at: :desc).last(5)
+      @modal_notifications = current_user.received_notifications.includes(:notifiable, :sender).where(is_read: false).order(created_at: :desc).limit(5)
     end
   end
 

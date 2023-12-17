@@ -33,7 +33,7 @@ class ProfilesController < ApplicationController
   end
 
   def my_posts
-    @my_posts = current_user.posts.order(created_at: :desc).page(params[:page]).per(12)
+    @my_posts = current_user.posts.order(age_group: :asc, created_at: :asc).page(params[:page]).per(12)
   end
 
   private

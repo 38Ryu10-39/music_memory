@@ -1,8 +1,9 @@
 <% breadcrumb :rooms_index %>
 <% content_for(:title, t('.title')) %>
-<h2 class="mt-3 mb-3"><%= t('.title') %></h2>
+<h1 class="mt-3 mb-3"><%= t('.title') %></h2>
 <% if @another_user_rooms.present? %>
   <% @another_user_rooms.each do |another_user_room| %>
+    <% chat = another_user_room.latest_chat_message %>
     <table class="table table-striped">
       <tr>
         <td>
@@ -12,13 +13,12 @@
           <% end %>
         </td>
         <td>
-          <% chat = Chat.find_by(id: another_user_room.room.chats.ids.last) %>
           <% if chat.present? %>
             <%= truncate(chat.message, length: 10) %>
           <% end %>
         </td>
         <td>
-          <h6 style="color: #C0C0C0;"><%= another_user_room.updated_at.strftime("%Y/%m/%d %H:%M") %></h6>
+          <h6 style="color: #C0C0C0;"><%= chat.created_at.strftime("%Y/%m/%d %H:%M") %></h6>
         </td>
         <td>
           <%= link_to room_path(another_user_room.room.id), method: :delete do %>

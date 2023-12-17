@@ -4,9 +4,15 @@
   <div class="row">
     <div class="card-deck row d-flex justify-content-evenly">
       <h1 class="text-center my-5"><%= t('.title') %></h1>
-      <% if @my_posts.present? %>
-        <%= render partial: 'post', collection: @my_posts %>
-      <% else %>
+      <% current_age_group = nil %>
+      <% @my_posts.each do |post| %>
+        <% if current_age_group != post.age_group %>
+          <% current_age_group = post.age_group %>
+          <h2 class="text-center my-5"><%= post.age_group_i18n %>時代</h2>
+        <% end %>
+        <%= render partial: 'post', locals: { post: post } %>
+      <% end %>
+      <% if @my_posts.blank? %>
         <div class="text-center m-5"><%= t('defaults.messages.no_posts') %></div>
       <% end %>
     </div>
