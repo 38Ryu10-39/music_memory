@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
     my_user_rooms = current_user.user_rooms.includes(:room).map do |my_user_room|
       my_user_room.room.id
     end
-    @another_user_rooms = UserRoom.where(room_id: my_user_rooms).where.not(user_id: current_user.id).includes(:user, :room).order(created_at: :desc)
+    @another_user_rooms = UserRoom.where(room_id: my_user_rooms).where.not(user_id: current_user.id).includes(:user, :room).sort_by { |user_room| user_room.latest_chat_message&.created_at || Time.at(0) }.reverse
   end
 
   def show
