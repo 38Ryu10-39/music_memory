@@ -1,17 +1,17 @@
-<% breadcrumb :profiles_likes %>
+<% breadcrumb :profiles_recommend_posts %>
 <% content_for(:title, t('.title')) %>
 <div class="container">
   <div class="row justify-content-center">
     <div class="card-deck row d-flex justify-content-evenly">
       <h1 class="text-center my-5"><%= t('.title') %></h1>
-      <% if @like_posts.present? %>
-        <%= render partial: 'post', collection: @like_posts %>
+      <% if @recommend_posts.present? %>
+        <%= render partial: 'post', collection: @recommend_posts %>
       <% else %>
         <div class="text-center m-5"><%= t('defaults.messages.no_posts') %></div>
       <% end %>
     </div>
     <div class="mt-5">
-      <%= paginate @like_posts, theme: 'bootstrap-5' %>
+      <%= paginate @recommend_posts, theme: 'bootstrap-5' %>
     </div>
   </div>
 </div>

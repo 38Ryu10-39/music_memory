@@ -1,0 +1,23 @@
+<div class="bg-layout p-4">
+  <%= search_form_for q, url: search_posts_path, html: { class: 'row g-3' } do |f| %>
+    <div class="col-md-3 mb-1">
+      <%= f.label :music_name_cont, '曲名', class: 'form-label' %>
+      <%= f.search_field :music_name_cont, class: 'form-control' %>
+    </div>
+    <div class="col-md-3 mb-1">
+      <%= f.label :user_name_cont, '投稿者', class: 'form-label' %>
+      <%= f.search_field :user_name_cont, class: 'form-control' %>
+    </div>
+    <div class="col-md-3 mb-1">
+      <%= f.label :prefecture_id_eq, '場所', class: 'form-label' %>
+      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: '選択なし' }, { class: 'form-select' } %>
+    </div>
+    <div class="col-md-3 mb-1">
+      <%= f.label :age_group_eq, '時代', class: 'form-label' %>
+      <%= f.select :age_group_eq, Post.age_groups_i18n.keys.map.with_index {|k, i| [Post.age_groups_i18n[k], i * 5]}, { include_blank: t('defaults.messages.age_group_placeholder')}, { class: 'form-select' } %>
+    </div>
+    <div class="col-md-3">
+      <%= f.submit '検索', class: 'btn btn-orange' %>
+    </div>
+  <% end %>
+</div>

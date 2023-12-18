@@ -103,6 +103,8 @@ ja:
       title: "いいねした投稿"
     my_posts:
       title: "あなたの投稿"
+    recommend_posts:
+      title: "おすすめの投稿"
   rooms:
     index:
       title: "チャットルーム一覧"

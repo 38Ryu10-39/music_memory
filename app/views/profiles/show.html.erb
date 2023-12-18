@@ -52,7 +52,7 @@
       </div>
       <div>
         <%= link_to t('.my_posts'), my_posts_profile_path, class:"btn btn-orange container-fluid" %>
-        <div class="card">
+        <div class="card mb-5">
           <table class="table table-striped">
             <thead>
               <th><%= Post.human_attribute_name(:music_name) %></th>
@@ -63,6 +63,20 @@
           </table>
         </div>
       </div>
+
+      <div>
+        <%= link_to "> おすすめの投稿", recommend_posts_profile_path, class:"btn btn-orange container-fluid" %>
+        <div class="card">
+          <table class="table table-striped">
+            <thead>
+              <th><%= Post.human_attribute_name(:music_name) %></th>
+              <th><%= Post.human_attribute_name(:memory) %></th>
+            </thead>
+            <%= render partial: 'simple_post', collection: @recommend_follow_posts %>
+          </table>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
