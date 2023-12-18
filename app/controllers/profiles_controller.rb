@@ -4,6 +4,8 @@ class ProfilesController < ApplicationController
     @my_user_room = UserRoom.where(user_id: current_user.id)
     @like_posts = current_user.like_posts.includes(:user).order(created_at: :desc).last(5)
     @my_posts = current_user.posts.order(created_at: :desc).last(5)
+    @following_user_ids = current_user.following_users.pluck(:id)
+    @recommend_follow_posts = Post.where(user_id: @following_user_ids).includes(:user).order("RANDOM()").limit(5)
   end
 
   def edit
@@ -34,6 +36,11 @@ class ProfilesController < ApplicationController
 
   def my_posts
     @my_posts = current_user.posts.order(age_group: :asc, created_at: :asc).page(params[:page]).per(12)
+  end
+
+  def recommend_posts
+    @following_user_ids = current_user.following_users.pluck(:id)
+    @recommend_posts = Post.where(user_id: @following_user_ids).includes(:user).order("RANDOM()").page(params[:page]).per(10)
   end
 
   private

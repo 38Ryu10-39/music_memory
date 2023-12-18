@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
   resource :profile, only: %i[show edit update] do
     collection do
-      get :follows, :followers, :likes, :my_posts
+      get :follows, :followers, :likes, :my_posts, :recommend_posts
     end
   end
   resources :rooms, only: %i[index show create destroy] do

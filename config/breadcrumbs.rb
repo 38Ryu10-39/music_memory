@@ -67,6 +67,11 @@ crumb :profiles_my_posts do
   parent :profiles
 end
 
+crumb :profiles_recommend_posts do
+  link "おすすめの投稿", recommend_posts_profile_path
+  parent :profiles
+end
+
 crumb :rooms_index do
   link "チャットルーム一覧", rooms_path
   parent :profiles
