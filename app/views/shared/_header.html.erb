@@ -23,7 +23,7 @@
 
           <li class="nav-item"><%= link_to t('defaults.new_post'), new_post_path, class: "nav-link text-white" %></li>
           
-          <li class="nav-item">
+          <li class="nav-item px-2">
             <div class="dropdown">
               <button class="btn btn-orange dropdown-toggle border border-white border-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-regular fa-user fs-5"></i>
@@ -31,6 +31,17 @@
               <ul class="dropdown-menu bg-white">
                 <li><%= link_to t('defaults.mypage'), profile_path, class: "dropdown-item text-orange" %></li>
                 <li><%= link_to t('defaults.logout'), logout_path, method: :delete, class: "dropdown-item text-orange" %></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item px-2">
+            <div class="dropdown">
+              <a class="btn btn-orange dropdown-toggle border border-white border-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-music"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "思い出一覧", memory_index_posts_path, class:"dropdown-item text-orange" %></li>
+                <li><%= link_to "いいね一覧", likes_profile_path, class:"dropdown-item text-orange" %></li>
               </ul>
             </div>
           </li>
@@ -49,7 +60,7 @@
 <nav class="navbar bg-layout mt-0">
   <div class="container-fluid">
     <button class="navbar-toggler p-2 arrow-button" id="myButton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="text-orange">検索 </span><i class="fa-solid fa-caret-down text-orange" id="navbarIcon"></i>
+      <i class="fa-solid fa-magnifying-glass text-orange"></i><span class="text-orange"> 検索</span>
     </button>
   </div>
 </nav>
