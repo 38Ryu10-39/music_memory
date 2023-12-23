@@ -10,8 +10,8 @@
         <h2>投稿件数: <%= @all_posts.count %>件</h2>
       <% end %>
     </div>
-    <% Prefecture.all.each do |i| %>
-      <input type="hidden" id="prefecture_<%= i.id %>" value="<%= @counts["#{i.id - 1}".to_i] %>">
+    <% @prefectures.each do |prefecture| %>
+      <input type="hidden" class="<%= @counts["#{prefecture.id - 1}".to_i] %>" id="prefecture_<%= prefecture.id %>" value="<%= prefecture.name %>">
     <% end %>
     <div id="jmap" class="col-lg-6 col-md-10 col-sm-10 offset-lg col-lg-5 col-md-10 mx-auto"></div>
     <div class="card-deck row d-flex justify-content-evenly col-lg-5 col-md-10 col-sm-10 ">

@@ -4,8 +4,9 @@ class PostsController < ApplicationController
 
   def index
     @all_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc)
-    @posts = @all_posts.page(params[:page]).per(8)
-    @counts = Prefecture.all.map { |pref| @posts.where(prefecture_id: pref.id).count }
+    @posts = @all_posts.page(params[:page]).per(6)
+    @prefectures = Prefecture.all
+    @counts = @prefectures.map { |pref| @all_posts.where(prefecture_id: pref.id).count }
   end
 
   def new
@@ -63,8 +64,9 @@ class PostsController < ApplicationController
 
   def search
     @all_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc)
-    @posts = @all_posts.page(params[:page]).per(8)
-    @counts = Prefecture.all.map { |pref| @posts.where(prefecture_id: pref.id).count }
+    @posts = @all_posts.page(params[:page]).per(6)
+    @prefectures = Prefecture.all
+    @counts = @prefectures.map { |pref| @all_posts.where(prefecture_id: pref.id).count }
     render :index
   end
 
