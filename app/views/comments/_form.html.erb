@@ -5,10 +5,12 @@
         <%= render 'shared/error_messages', object: f.object %>
       </div>
       <div class="form-group row">
-        <%= f.label :body, t('posts.show.comments_count', number: comments.count), class: 'col-form-label col-lg-3 text-lg-right' %>
+        <div id="comments-amount">
+          <p><%= comments.count %>件のコメント</p>
+        </div>
         <div>
           <div class="input-group">
-            <%= f.text_field :body, class: 'form-control', id: "js-comment-create-body", row: 4, placeholder: 'コメント' %>
+            <%= f.text_field :body, class: 'form-control mr-3', id: "js-comment-create-body", row: 4, placeholder: 'コメント' %>
             <div class="input-group-append">
               <%= f.submit t('posts.show.comment_submit'), class: 'btn btn-orange' %>
             </div>

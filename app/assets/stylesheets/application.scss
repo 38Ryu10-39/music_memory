@@ -183,3 +183,13 @@ input.form-control, textarea.form-control {
   border-bottom: 10px solid transparent;
   border-right: 10px solid #ff7b0019;
 }
+
+#search-icon {
+  display: inline-block;
+  transform: scale(1, .7);
+  transition: transform .3s ease;
+}
+
+#search-icon.search180 {
+  transform: scale(1, -.7);
+}

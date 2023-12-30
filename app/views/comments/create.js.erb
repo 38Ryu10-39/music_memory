@@ -3,3 +3,6 @@ $("#js-comments").html(
   "<%= j(render 'comments/comments', { comments: @comments }) %>"
 );
 $("#js-comment-create-body").val("");
+$("#comments-amount").html(
+  "<p><%= @comments.count %>件のコメント</p>"
+);

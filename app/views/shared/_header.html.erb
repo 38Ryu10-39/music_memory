@@ -60,7 +60,7 @@
 <nav class="navbar bg-layout mt-0">
   <div class="container-fluid">
     <button class="navbar-toggler p-2 arrow-button" id="myButton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      </i><span class="text-orange">検索 ▼</span>
+      <div><span id="search-text" class="text-orange">検索</span> <span id="search-icon">▼</span></div>
     </button>
   </div>
 </nav>
@@ -100,3 +100,4 @@
     </div>
   </div>
 </div>
+<%= javascript_import_module_tag "search" %>
