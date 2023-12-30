@@ -18,7 +18,7 @@
           <% end %>
         </td>
         <td>
-          <h6 style="color: #C0C0C0;"><%= chat.created_at.strftime("%Y/%m/%d %H:%M") %></h6>
+          <h6 style="color: #C0C0C0;"><%= chat.created_at.strftime("%Y/%m/%d %H:%M") if chat.present? %></h6>
         </td>
         <td>
           <%= link_to room_path(another_user_room.room.id), method: :delete do %>

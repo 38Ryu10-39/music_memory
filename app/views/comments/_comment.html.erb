@@ -1,9 +1,17 @@
 <tr id="js-comment-<%= comment.id %>" class="position-relative">
   <td style="width: 60px">
-    <%= image_tag comment.user.avatar_url, class: 'rounded-circle', size: '50x50' %>
+    <% if current_user.mine?(comment) %>
+      <%= image_tag comment.user.avatar_url, class: 'rounded-circle', size: '50x50' %>
+    <% else %>
+      <%= link_to user_path(comment.user.id) do %>
+        <%= image_tag comment.user.avatar_url, class: 'rounded-circle', size: '50x50' %>
+      <% end %>
+    <% end %>
   </td>
   <td>
-    <h3 class="small"><%= comment.user.name %></h3>
+    <h3 class="small">
+      <%= current_user.mine?(comment) ? comment.user.name : link_to(comment.user.name, comment) %>
+    </h3>
     <div>
       <%= simple_format(comment.body) %>
     </div>

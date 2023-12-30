@@ -3,3 +3,6 @@ $("#js-comment-create-error").empty();
 $("#js-comments").html(
   "<%= j(render 'comments/comments', { comments: @comments }) %>"
 );
+$("#comments-amount").html(
+  "<p><%= @comments.count %>件のコメント</p>"
+);

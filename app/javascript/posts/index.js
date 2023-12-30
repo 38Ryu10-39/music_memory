@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const urlLast = urlSplit[urlSplit.length - 1]
   const urlSearch = urlLast.includes('search')
   const pattern = /page=\d+&/
-  const urlPage = urlLast.includes('?page=')
   const modifiedString = urlLast.replace(pattern, '')
   const post_numbers = function(pre_num) { 
     const preId = document.querySelector(`#prefecture_${pre_num}`)
@@ -55,7 +54,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         heatmapColors: ["#FFE", "#FEDCBD", "#FCBB76", "#FCAF17", "#F36C21", "#F15A22"],
         backgroundColor: '#ea55040a',
         onSelect: function(e, data) {
-          if (urlSearch && urlPage) {
+          if (urlSearch) {
             window.location.href = `/prefectures/${data.option.code}/${modifiedString}`;
           } else {
             window.location.href = `/prefectures/${data.option.code}`;
