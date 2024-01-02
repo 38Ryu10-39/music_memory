@@ -31,6 +31,8 @@ class Post < ApplicationRecord
                     early_70s: 70,
                     late_70s: 75,
                   }
+
+  
   
   def self.ransackable_attributes(auth_object = nil)
     ["music_name", "prefecture_id", "age_group"]

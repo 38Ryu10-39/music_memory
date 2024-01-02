@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create edit update destroy], shallow: true
     resource :like, only: %i[create]
     get :search, on: :collection
+    get :music_search, on: :collection
+    get :user_search, on: :collection
     get :memory_index, on: :collection
   end
   resources :prefectures, only: %i[show] do

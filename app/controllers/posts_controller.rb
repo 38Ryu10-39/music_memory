@@ -62,6 +62,20 @@ class PostsController < ApplicationController
     render :index
   end
 
+  def music_search
+    @posts = Post.where("music_name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def user_search
+    @users = User.where("name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def memory_index
     @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(8)
   end
