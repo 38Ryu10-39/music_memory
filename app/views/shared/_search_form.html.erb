@@ -1,12 +1,16 @@
 <div class="bg-layout p-4">
   <%= search_form_for q, url: search_posts_path, html: { class: 'row g-3' } do |f| %>
-    <div class="col-md-3 mb-1">
+    <div data-controller="autocomplete" data-autocomplete-url-value="/posts/music_search" role="combobox" class="col-md-3 mb-1" class="col-md-3 mb-1">
       <%= f.label :music_name_cont, '曲名', class: 'form-label' %>
-      <%= f.search_field :music_name_cont, class: 'form-control' %>
+      <%= f.search_field :music_name_cont, data: { autocomplete_target: 'input' }, class: 'form-control' %>
+      <%= f.hidden_field :music_name, data: { autocomplete_target: 'hidden' } %>
+      <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
     </div>
-    <div class="col-md-3 mb-1">
+    <div data-controller="autocomplete" data-autocomplete-url-value="/posts/user_search" role="combobox"  class="col-md-3 mb-1" class="col-md-3 mb-1">
       <%= f.label :user_name_cont, '投稿者', class: 'form-label' %>
-      <%= f.search_field :user_name_cont, class: 'form-control' %>
+      <%= f.search_field :user_name_cont, data: { autocomplete_target: 'input' }, class: 'form-control' %>
+      <%= f.hidden_field :user_name, data: { autocomplete_target: 'hidden' } %>
+      <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
     </div>
     <div class="col-md-3 mb-1">
       <%= f.label :prefecture_id_eq, '場所', class: 'form-label' %>

@@ -25,16 +25,16 @@ class UsersController < ApplicationController
     @following_users = @user.following_users
     @follower_users = @user.follower_users
     @my_user_room = UserRoom.where(user_id: current_user.id)
-    @partner_user_room = UserRoom.where(user_id: @user.id)
+    partner_user_room = UserRoom.where(user_id: @user.id)
     my_room_ids = @my_user_room.pluck(:room_id)
-    partner_room_ids = @partner_user_room.pluck(:room_id)
+    partner_room_ids = partner_user_room.pluck(:room_id)
 
     common_room_ids = my_room_ids & partner_room_ids
 
-    if @user.id != current_user.id && common_room_ids.empty?
+    if common_room_ids.empty?
       @room = Room.new
       @user_room = UserRoom.new
-    elsif !common_room_ids.empty?
+    else
       @is_room = true
       @room_id = common_room_ids.first
     end

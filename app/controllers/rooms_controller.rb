@@ -1,14 +1,12 @@
 class RoomsController < ApplicationController
   def index
-    my_user_rooms = current_user.user_rooms.includes(:room).map do |my_user_room|
-      my_user_room.room.id
-    end
-    @another_user_rooms = UserRoom.where(room_id: my_user_rooms).where.not(user_id: current_user.id).includes(:user, :room).sort_by { |user_room| user_room.latest_chat_message&.created_at || Time.at(0) }.reverse
+    @my_user_rooms = current_user.user_rooms.includes(:room).pluck(:room_id)
+    @another_user_rooms = UserRoom.select_my_rooms(@my_user_rooms).excluding_user(current_user.id).includes(:user, :room).latest_chat_sorted
   end
 
   def show
     @room = Room.find(params[:id])
-    user_room = UserRoom.where(user_id: current_user.id, room_id: @room.id)
+    user_room = UserRoom.my_user_room(current_user.id, @room.id)
     if user_room.present?
       @chats = @room.chats.includes(:user).order(created_at: :desc)
       @chat = Chat.new

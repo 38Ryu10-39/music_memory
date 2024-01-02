@@ -4,8 +4,17 @@
   <div class="row justify-content-center">
     <h1 class="mt-5 mb-5 text-center"><%= t('.title') %></h1>
     <div class="col-10">
-      <% if params[:q] %>
-        <h2>検索件数: <%= @all_posts.count %>件</h2>
+      <% if params[:q].present? %>
+        <h2>検索結果:</h2>
+        <h3>
+          <%= display_conditions([
+            condition("曲名", @q.music_name_cont),
+            condition("投稿者", @q.user_name_cont),
+            condition("地域", Prefecture.find_by(id: @q.prefecture_id_eq)&.name),
+            condition("時代", display_age_group_label)
+          ]) %>
+          <%= "( #{@all_posts.count}件 )" %>
+        </h3>
       <% else %>
         <h2>投稿件数: <%= @all_posts.count %>件</h2>
       <% end %>
